@@ -1,8 +1,19 @@
 {
   "name": "allin",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "license": "Apache-2.0",
+  "description": "All In informática",
+  "author": {
+    "name": "gixi",
+    "url": "https://github.com/gixilym",
+    "email": "gixi.tsx@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gixilym/allin.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -10,12 +21,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/dm-sans": "^5.0.6",
+    "@mercadopago/sdk-react": "^0.0.19",
+    "@supabase/supabase-js": "^2.45.1",
     "lucide-react": "^0.427.0",
+    "prop-types": "^15.8.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.5.2",
+    "wouter": "^3.3.1",
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
+    "@types/prop-types": "^15.7.12",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
