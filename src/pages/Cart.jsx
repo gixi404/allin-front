@@ -20,7 +20,7 @@ function Cart() {
 
   async function createPreference() {
     try {
-      const res = await fetch("http:/localhost/create-preference", {
+      const res = await fetch("http://localhost:3000/create-preference", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title: "Consolador", price: 320 }),
@@ -51,29 +51,42 @@ function Cart() {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="w-full max-w-[600px] border-2 p-6 rounded-lg border-slate-400 flex flex-col items-start justify-center gap-y-8">
-          <h3 className="text-4xl font-bold w-full text-start">
-            Carrito de Compras
-          </h3>
-          <div className="flex items-center justify-between w-full">
-            <p className="text-2xl font-semibold">Total</p>
-            <p className="text-2xl font-bold">${total}</p>
+        <div className="w-full flex flex-col lg:flex-row justify-center items-start gap-10 px-4 lg:px-8">
+          <div className="w-full lg:w-3/6 flex flex-col justify-start items-center gap-y-2 lg:gap-y-4">
+            <h3 className="w-full text-2xl lg:text-3xl font-semibold">
+              Aviso sobre tu compra
+            </h3>
+            <p className="w-full text-pretty text-sm lg:text-lg">
+              El retiro de la compra se realiza de manera presencial en nuestro
+              local. La compra una vez realizada, estará disponible su retiro
+              hasta dentro de los próximos 3 días hábiles. En caso de no contar
+              con stock de un producto en particular se reembolsará el valor del
+              producto en su totalidad. <br /> <br /> Para cualquier consulta o
+              reclamo comuniquese vía WhatsApp a este número: +54 261 123-4567.
+            </p>
           </div>
-          {len(myCart) > 0 && (
-            <div className="w-full flex flex-col justify-center items-center gap-y-4">
-              <BuyBtnMP buy={buy} />
-              {/* <BuyBtnCash /> */}
+          <div className="w-full lg:w-3/6 border-2 p-6 rounded-lg border-slate-400 flex flex-col items-start justify-center gap-y-8">
+            <div className="flex items-center justify-between w-full">
+              <p className="text-xl lg:text-2xl font-semibold">Total</p>
+              <p className="text-xl lg:text-2xl font-bold">${total}</p>
             </div>
-          )}
-          {len(myCart) > 0 ? (
-            <ul className="space-y-4 w-full">
-              {myCart.map(p => (
-                <CartProduct key={p.id} {...p} />
-              ))}
-            </ul>
-          ) : (
-            <EmptyCart />
-          )}
+            {len(myCart) > 0 && (
+              <div className="w-full flex flex-col justify-center items-center gap-y-4">
+                <BuyBtnMP buy={buy} />
+                {/* <BuyBtnCash /> */}
+              </div>
+            )}
+            <hr className="w-full border lg:border-2 border-slate-400 rounded-lg" />
+            {len(myCart) > 0 ? (
+              <ul className="space-y-4 w-full">
+                {myCart.map(p => (
+                  <CartProduct key={p.id} {...p} />
+                ))}
+              </ul>
+            ) : (
+              <EmptyCart />
+            )}
+          </div>
         </div>
       )}
     </section>

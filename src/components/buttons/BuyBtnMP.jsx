@@ -1,13 +1,13 @@
+import propTypes from "prop-types";
+
 function BuyBtnMP(props) {
   return (
-    <button className="w-full flex justify-center items-center gap-x-7 bg-blue-300 hover:bg-blue-400 hover:border-blue-300 duration-100 rounded-lg h-[55px] border-2 border-blue-400/70 ">
-      <svg
-        width="3em"
-        height="3em"
-        fill="none"
-        viewBox="0 0 150 104"
-        {...props}
-      >
+    <button
+      autoFocus
+      className="w-full max-w-[410px] flex justify-center items-center gap-x-6 bg-blue-400/70 hover:bg-blue-400 hover:border-blue-400 duration-100 rounded-xl h-[55px] border-4 border-blue-400/30 "
+      onClick={props.buy}
+    >
+      <svg width="3em" height="3em" fill="none" viewBox="0 0 150 104">
         <path
           fill="#0A0080"
           d="M150 49.027c0-26.944-33.685-48.87-75-48.87-41.501 0-75 21.926-75 48.87v2.787c0 28.616 29.404 51.843 75 51.843 45.968 0 75-23.227 75-51.843v-2.787Z"
@@ -39,3 +39,7 @@ function BuyBtnMP(props) {
 }
 
 export default BuyBtnMP;
+
+BuyBtnMP.propTypes = {
+  buy: propTypes.func,
+};

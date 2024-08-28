@@ -1,11 +1,13 @@
 import { Route, Switch } from "wouter";
 import Layout from "./components/Layout";
 import AboutUs from "./pages/AboutUs";
+import Admin from "./pages/Admin";
 import Cart from "./pages/Cart";
 import Home from "./pages/Home";
 import Location from "./pages/Location";
 import NotFound from "./pages/NotFound";
 import Products from "./pages/Products";
+import { ADMIN_PATH } from "./utils/consts";
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
         <Route path="/location" component={Location} />
         <Route path="/aboutus" component={AboutUs} />
         <Route path="/cart" component={Cart} />
+        <Route path={ADMIN_PATH} component={Admin} />
         <Route path="*" component={NotFound} />
       </Switch>
     </Layout>

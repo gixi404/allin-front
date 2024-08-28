@@ -43,7 +43,9 @@ function Header() {
         >
           Sobre Nosotros
         </Link>
-        <CartBtn isHeader />
+        <Link to="/cart" className="cursor-pointer duration-150 hover:scale-95">
+          <CartBtn isHeader />
+        </Link>
       </nav>
       <MenuBtn setMenuIsOpen={setMenuIsOpen} />
       {menuIsOpen && <Menu setMenuIsOpen={setMenuIsOpen} top={top} />}
