@@ -1,6 +1,6 @@
 import propTypes from "prop-types";
-import { twMerge } from "tailwind-merge";
-import { len } from "../../utils/helpers";
+// import { twMerge } from "tailwind-merge";
+// import { len } from "../../utils/helpers";
 
 function ModalAddProductAdmin({ setShowAddModal, newProduct, setNewProduct }) {
   // const regexp =
