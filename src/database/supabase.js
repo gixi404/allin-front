@@ -10,10 +10,10 @@ async function getProducts() {
   return products;
 }
 
-async function addProduct() {
-  const { error } = await supabase.from(TABLE).insert({ name: "ola" });
+async function addProduct(product) {
+  const { error } = await supabase.from(TABLE).insert(product);
   if (error) console.log(error);
-  else console.log("added");
+  else console.log("se añadió locura");
 }
 
 async function updateProduct() {

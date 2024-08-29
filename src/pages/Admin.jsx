@@ -45,7 +45,7 @@ function Admin() {
         />
       )}
 
-      <header className="text-xl font-semibold rounded-lg lowercase bg-slate-700 px-4 text-slate-100 fixed top-4 right-4 py-2 text-center">
+      <header className="z-50 text-xl font-semibold rounded-lg lowercase bg-slate-700 px-4 text-slate-100 fixed bottom-4 right-4 py-2 text-center">
         Cotización del dólar:&nbsp;&nbsp;
         <span className="text-green-200 font-bold tracking-wide">${dolar}</span>
       </header>
@@ -66,10 +66,11 @@ function Admin() {
         <div className="flex justify-between items-start mb-6">
           <input
             onChange={e => setVal(e.target.value)}
+            disabled
             autoFocus
             type="search"
             placeholder="Busca un producto..."
-            className="bg-slate-500 h-12 rounded-lg text-lg px-6 placeholder:text-white w-[300px] outline-0 placeholder:select-none text-white border-2 border-slate-600"
+            className="bg-slate-500 h-12 rounded-lg text-lg px-6 placeholder:text-white w-[300px] outline-0 placeholder:select-none text-white border-2 border-slate-600 opacity-30"
           />
           <button
             onClick={() => setShowAddModal(true)}

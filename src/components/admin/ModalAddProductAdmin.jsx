@@ -1,4 +1,5 @@
 import propTypes from "prop-types";
+import { addProduct } from "../../database/supabase";
 // import { twMerge } from "tailwind-merge";
 // import { len } from "../../utils/helpers";
 
@@ -34,7 +35,7 @@ function ModalAddProductAdmin({ setShowAddModal, newProduct, setNewProduct }) {
   }
 
   return (
-    <div className="fixed inset-0 pb-20 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+    <div className="fixed inset-0 pb-20 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50">
       <div className="bg-white p-6 rounded-md shadow-md w-full max-w-md">
         <h2 className="text-xl font-bold mb-4">Añadir un nuevo producto</h2>
         <div className="grid gap-4">
@@ -107,7 +108,7 @@ function ModalAddProductAdmin({ setShowAddModal, newProduct, setNewProduct }) {
             className="bg-green-600 hover:bg-green-400 duration-100 text-white px-8 py-1 text-lg rounded-lg "
             onClick={() => {
               setShowAddModal(false);
-              console.log(newProduct);
+              addProduct(newProduct);
             }}
           >
             Añadir

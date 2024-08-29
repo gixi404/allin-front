@@ -6,9 +6,10 @@ function ProductAdmin({ name, description, price, id }) {
       <td className="px-4 py-2">{name}</td>
       <td className="px-4 py-2">{description}</td>
       <td className="px-4 py-2">${price.toFixed(2)}</td>
-      <td className="px-4 py-2">
+      <td className="px-4 py-2 pointer-events-none opacity-30">
         <div className="flex gap-2">
           <button
+            disabled
             className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
             onClick={() => console.log(id)}
             // onClick={() => handleEditProduct(id)}
@@ -16,6 +17,7 @@ function ProductAdmin({ name, description, price, id }) {
             Editar
           </button>
           <button
+            disabled
             className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
             // onClick={() => handleDeleteProduct(id)}
           >
