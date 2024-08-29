@@ -25,7 +25,7 @@ function Main() {
         </p>
         <div className="w-full flex flex-col lg:flex-row justify-start items-center gap-4">
           <Link
-            to="/products"
+            to="/sexo"
             className="bg-slate-800 text-lg lowercase font-[500] text-white px-4 hover:bg-slate-700 duration-150 hover:scale-95 py-3 rounded-xl border-2 border-rose-300/40 flex justify-center items-center gap-x-3 w-full max-w-[300px] lg:w-max"
           >
             <ProductIcon size={28} strokeWidth={1.5} />
