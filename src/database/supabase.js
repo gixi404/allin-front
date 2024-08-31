@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { toast } from "react-hot-toast";
 import { TABLE } from "../utils/consts";
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -12,22 +13,24 @@ async function getProducts() {
 
 async function addProduct(product) {
   const { error } = await supabase.from(TABLE).insert(product);
-  if (error) console.log(error);
-  else console.log("se añadió locura");
+  if (error) console.error(`Error en 'addProduct' ${error.message} `);
 }
 
-async function updateProduct() {
+async function updateProduct(product) {
   const { error } = await supabase
     .from(TABLE)
-    .update({ name: "Australia" })
-    .eq("id", 1);
-  if (error) console.log(error);
-  else console.log("updated");
+    .update(product)
+    .eq("id", product.id);
+  if (error) console.error(`Error en 'updateProduct' ${error.message} `);
 }
 
-async function deleteProduct() {
-  const response = await supabase.from(TABLE).delete().eq("id", 1);
-  console.log(response);
+async function deleteProduct(id) {
+  try {
+    await supabase.from(TABLE).delete().eq("id", id);
+  } catch (err) {
+    console.error(`Error en 'deleteProduct' ${err.message} `);
+    toast.error("Error al eliminar producto");
+  }
 }
 
 export { addProduct, deleteProduct, getProducts, supabase, updateProduct };

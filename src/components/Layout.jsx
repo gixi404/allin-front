@@ -1,4 +1,6 @@
+import { useDocumentTitle } from "@uidotdev/usehooks";
 import propTypes from "prop-types";
+import { Toaster } from "react-hot-toast";
 import { useLocation } from "wouter";
 import { ADMIN_PATH } from "../utils/consts";
 import GoToCart from "./buttons/GoToCart";
@@ -8,11 +10,21 @@ import Header from "./Header";
 
 function Layout({ children }) {
   const pathname = useLocation()[0];
+  const isAdminPath = pathname == ADMIN_PATH;
 
-  if (pathname == ADMIN_PATH) return children;
+  useDocumentTitle(`All In ${isAdminPath ? "- Admin panel" : ""}`);
+
+  if (isAdminPath)
+    return (
+      <>
+        <Toaster position="top-right" reverseOrder={false} />
+        {children}
+      </>
+    );
 
   return (
     <>
+      <Toaster position="top-right" reverseOrder={false} />
       <GoToCart />
       <Header />
       <WhatsAppBtn />

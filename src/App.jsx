@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import Location from "./pages/Location";
 import NotFound from "./pages/NotFound";
 import Products from "./pages/Products";
-// import { ADMIN_PATH } from "./utils/consts";
+import { ADMIN_PATH } from "./utils/consts";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <Route path="/location" component={Location} />
         <Route path="/aboutus" component={AboutUs} />
         <Route path="/cart" component={Cart} />
-        <Route path="/sexo" component={Admin} />
+        <Route path={ADMIN_PATH} component={Admin} />
         <Route path="*" component={NotFound} />
       </Switch>
     </Layout>
