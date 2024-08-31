@@ -72,7 +72,8 @@ function ModalAddAdmin({
     setShowAddModal(false);
     setProducts([...products, newProduct]);
     toast.success("Producto agregado");
-    addProduct(newProduct).then(() => location.reload());
+    addProduct(newProduct);
+    // .then(() => location.reload());
   }
 
   return (
