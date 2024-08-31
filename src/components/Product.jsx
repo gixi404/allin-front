@@ -15,6 +15,8 @@ function Product(props) {
     cartIds = myCart.map(p => p.id),
     inCart = cartIds.includes(id);
 
+    
+
   return (
     <li className="bg-slate-200 rounded-lg shadow-orange-800 shadow-sm overflow-hidden w-[320px] h-[380px] flex flex-col justify-between items-start">
       <img
@@ -26,7 +28,7 @@ function Product(props) {
       />
       <div className="px-4 h-[80px] w-full flex flex-col justify-start items-start space-y-2">
         <p className="text-xl font-bold">{name}</p>
-        <p className=" text-[16px]">{description}</p>
+        <p className=" text-[16px]">{description == 300 ? "" : description}</p>
       </div>
       <div className="flex items-center justify-between w-full pb-4 px-4">
         <span className="text-lg font-semibold">
