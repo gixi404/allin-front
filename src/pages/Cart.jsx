@@ -4,7 +4,9 @@ import BuyBtnMP from "../components/buttons/BuyBtnMP";
 import CartProduct from "../components/CartProduct";
 import EmptyCart from "../components/EmptyCart";
 import Loader from "../components/Loader";
+import PurchasesDisabled from "../components/PurchasesDisabled";
 import useDolar from "../hooks/useDolar";
+import { PURCHASES_ENABLED } from "../utils/consts";
 import { formatPrice, len } from "../utils/helpers";
 import { useStore } from "../utils/store";
 
@@ -72,8 +74,12 @@ function Cart() {
             </div>
             {len(myCart) > 0 && (
               <div className="w-full flex flex-col justify-center items-center gap-y-4">
-                <BuyBtnMP buy={buy} />
-                {/* <BuyBtnCash /> */}
+                {PURCHASES_ENABLED ? (
+                  <BuyBtnMP buy={buy} />
+                ) : (
+                  /* <BuyBtnCash /> */
+                 <PurchasesDisabled />
+                )}
               </div>
             )}
             <hr className="w-full border lg:border-2 border-slate-400 rounded-lg" />

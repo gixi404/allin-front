@@ -15,8 +15,6 @@ function Product(props) {
     cartIds = myCart.map(p => p.id),
     inCart = cartIds.includes(id);
 
-    
-
   return (
     <li className="bg-slate-200 rounded-lg shadow-orange-800 shadow-sm overflow-hidden w-[320px] h-[380px] flex flex-col justify-between items-start">
       <img

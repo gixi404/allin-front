@@ -6,6 +6,8 @@ const DOLAR_STATUS_URL = "https://dolarapi.com/v1/estado";
 
 const ADMIN_PATH = "/030a941e-79c3-4fac-9f8e-72843da6d3df";
 
+const PURCHASES_ENABLED = false;
+
 const INITIAL_PROD = {
   name: "",
   description: "",
@@ -23,4 +25,5 @@ export {
   INITIAL_PROD,
   LOCATION,
   TABLE,
+  PURCHASES_ENABLED,
 };

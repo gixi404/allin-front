@@ -43,7 +43,6 @@ function Admin() {
   }, []);
 
   if (!isLogged) return <LoginAdmin />;
-
   if (isLoading) return <Loader />;
 
   return (
@@ -141,7 +140,8 @@ function Admin() {
           )}
         </div>
       </main>
-      <footer className="z-50 text-lg font-semibold rounded-md lowercase bg-slate-700 px-4 text-slate-100 fixed bottom-1 right-1 py-2 text-center border border-green-300">
+
+      <footer className="z-50 text-lg font-semibold rounded-md lowercase bg-slate-700 px-4 text-slate-100 fixed bottom-1 right-1 py-2 text-center border-2 border-green-300">
         Cotización del dólar:&nbsp;&nbsp;
         <span className="text-green-200 font-bold tracking-wide">${dolar}</span>
       </footer>

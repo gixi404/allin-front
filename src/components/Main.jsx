@@ -20,7 +20,7 @@ function Main() {
           Insumos informáticos y servicio técnico
         </h2>
         <p className="text-[19px] font-[500] text-pretty w-full text-center lg:text-start">
-          Ofrecemos una amplia variedad de insumos informáticos y especialistas
+          Ofrecemos una amplia variedad de insumos informáticos y contamos con
           técnicos en reparación de computadoras, notebooks, impresoras y más.
         </p>
         <div className="w-full flex flex-col lg:flex-row justify-start items-center gap-4">
@@ -29,7 +29,7 @@ function Main() {
             className="bg-slate-800 text-lg lowercase font-[500] text-white px-4 hover:bg-slate-700 duration-150 hover:scale-95 py-3 rounded-xl border-2 border-rose-300/40 flex justify-center items-center gap-x-3 w-full max-w-[300px] lg:w-max"
           >
             <ProductIcon size={28} strokeWidth={1.5} />
-            <span>Ver productos</span>
+            <span>productos</span>
           </Link>
           <a
             href={msgWhatsApp(

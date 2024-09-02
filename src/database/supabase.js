@@ -34,3 +34,4 @@ async function deleteProduct(id) {
 }
 
 export { addProduct, deleteProduct, getProducts, supabase, updateProduct };
+
