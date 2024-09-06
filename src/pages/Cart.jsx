@@ -1,55 +1,50 @@
-import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-import { useState } from "react";
-import BuyBtnMP from "../components/buttons/BuyBtnMP";
+import { initMercadoPago } from "@mercadopago/sdk-react";
+import { useLocalStorage } from "@uidotdev/usehooks";
+import { useEffect, useState } from "react";
+import BuyBtn from "../components/buttons/BuyBtn";
 import CartProduct from "../components/CartProduct";
 import EmptyCart from "../components/EmptyCart";
 import Loader from "../components/Loader";
-import PurchasesDisabled from "../components/PurchasesDisabled";
 import useDolar from "../hooks/useDolar";
-import { PURCHASES_ENABLED } from "../utils/consts";
+import { CHECKOUT_URL } from "../utils/consts";
 import { formatPrice, len } from "../utils/helpers";
-import { useStore } from "../utils/store";
 
 const KEY = import.meta.env.VITE_MP_PUBLIC;
 
 function Cart() {
-  initMercadoPago(KEY, { locale: "es-AR" });
-  const { myCart } = useStore(),
-    [preferenceId, setPreferenceId] = useState(null),
+  const [cart, setCart] = useLocalStorage("cart", []),
     { dolar, isLoading } = useDolar(),
-    calculatePrice = myCart.reduce((acc, i) => acc + i.price, 0) * dolar,
-    total = formatPrice(calculatePrice.toFixed(2));
+    calculatePrice = cart.reduce((acc, i) => acc + i.price, 0) * dolar,
+    total = formatPrice(calculatePrice.toFixed(2)),
+    [preferenceId, setPreferenceId] = useState(null);
 
-  async function createPreference() {
-    try {
-      const res = await fetch("http://localhost:3000/create-preference", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title: "Consolador", price: 320 }),
-      });
-      const { id } = res.data;
-      return id;
-    } catch (err) {
-      console.error(`catch 'createPreference' ${err.message}`);
+  useEffect(() => {
+    if (len(cart) == 0) return;
+    initMercadoPago(KEY, { locale: "es-AR" });
+    async function getPreference() {
+      const myCart = cart.map(p => ({
+        id: p.id,
+        title: p.name,
+        unit_price: p.price * dolar,
+      }));
+      3;
+      try {
+        const res = await fetch(CHECKOUT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ cart: myCart }),
+        });
+        const { preferenceId } = await res.json();
+        setPreferenceId(preferenceId);
+      } catch (err) {
+        console.error(`catch 'getPreference' ${err.message}`);
+      }
     }
-  }
-
-  async function buy() {
-    if (len(myCart) == 0) return;
-    const id = await createPreference();
-    if (id) setPreferenceId(id);
-    else alert("No se pudo crear la preferencia");
-  }
+    getPreference();
+  }, [dolar]);
 
   return (
     <section className="w-[100vw] lg:w-full h-full lg:min-w-[1100px] min-h-[400px] flex justify-center items-start">
-      {preferenceId && (
-        <Wallet
-          initialization={{ preferenceId }}
-          customization={{ texts: { valueProp: "smart_option" } }}
-        />
-      )}
-
       {isLoading ? (
         <Loader />
       ) : (
@@ -72,20 +67,11 @@ function Cart() {
               <p className="text-xl lg:text-2xl font-semibold">Total</p>
               <p className="text-xl lg:text-2xl font-bold">${total}</p>
             </div>
-            {len(myCart) > 0 && (
-              <div className="w-full flex flex-col justify-center items-center gap-y-4">
-                {PURCHASES_ENABLED ? (
-                  <BuyBtnMP buy={buy} />
-                ) : (
-                  /* <BuyBtnCash /> */
-                 <PurchasesDisabled />
-                )}
-              </div>
-            )}
-            <hr className="w-full border lg:border-2 border-slate-400 rounded-lg" />
-            {len(myCart) > 0 ? (
+            {len(cart) > 0 && <BuyBtn preferenceId={preferenceId} />}
+            <hr className="w-full border border-slate-400 rounded-lg" />
+            {len(cart) > 0 ? (
               <ul className="space-y-4 w-full">
-                {myCart.map(p => (
+                {cart.map(p => (
                   <CartProduct key={p.id} {...p} />
                 ))}
               </ul>

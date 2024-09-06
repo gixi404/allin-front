@@ -8,6 +8,7 @@ function Main() {
     <main className="w-full flex flex-col-reverse  lg:flex-row text-black justify-between items-center lg:items-start rounded-lg gap-6">
       <div className="w-full lg:w-[45%] flex justify-center items-center mt-6 lg:mt-0">
         <img
+          alt="Imagen principal"
           width={330}
           height={330}
           className="object-cover object-center select-none w-[250px] h-[250px] lg:w-[330px] lg:h-[330px]"

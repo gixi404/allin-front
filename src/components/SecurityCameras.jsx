@@ -7,6 +7,7 @@ function SecurityCameras() {
     <section className="w-full px-6 lg:px-0 flex flex-col-reverse lg:flex-row text-black justify-between items-start rounded-lg gap-2 lg:gap-6 mt-20">
       <div className="w-full lg:w-3/6 flex justify-center items-center">
         <img
+          alt="Imagen de seguridad"
           width={310}
           height={310}
           className="object-cover object-center select-none rounded-xl"

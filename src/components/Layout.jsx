@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import { Toaster } from "react-hot-toast";
 import { useLocation } from "wouter";
 import { ADMIN_PATH } from "../utils/consts";
-import GoToCart from "./buttons/GoToCart";
+import GoToCartBtn from "./buttons/GoToCartBtn";
 import WhatsAppBtn from "./buttons/WhatsAppBtn";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -25,7 +25,7 @@ function Layout({ children }) {
   return (
     <>
       <Toaster position="top-right" reverseOrder={false} />
-      <GoToCart />
+      <GoToCartBtn />
       <Header />
       <WhatsAppBtn />
       {children}

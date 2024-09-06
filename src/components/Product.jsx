@@ -1,12 +1,12 @@
+import { useLocalStorage } from "@uidotdev/usehooks";
 import propTypes from "prop-types";
 import { Link } from "wouter";
 import useDolar from "../hooks/useDolar";
 import { formatPrice } from "../utils/helpers";
-import { useStore } from "../utils/store";
 import DEFAULT_IMG from "/logo-img.png";
 
 function Product(props) {
-  const { addProduct, myCart } = useStore(),
+  const [myCart, setCart] = useLocalStorage("cart", []),
     { dolar, isLoading, status } = useDolar(),
     { id, img, price, name, description } = props,
     showBtn = status && dolar != 0 && !isLoading,
@@ -43,7 +43,7 @@ function Product(props) {
             </Link>
           ) : (
             <button
-              onClick={() => addProduct(props)}
+              onClick={() => setCart([...myCart, props])}
               className="bg-orange-500 hover:bg-orange-400 duration-100 text-white text-lg border-2 border-orange-400 h-10 px-4 rounded-lg font-[500]"
               style={{ textShadow: "1px 1px 1px black" }}
             >

@@ -1,13 +1,13 @@
+import { useLocalStorage } from "@uidotdev/usehooks";
 import { Trash as Icon } from "lucide-react";
 import propTypes from "prop-types";
 import useDolar from "../hooks/useDolar";
 import { formatPrice } from "../utils/helpers";
-import { useStore } from "../utils/store";
 import DEFAULT_IMG from "/logo-img.png";
 
 function CartProduct(props) {
   const { dolar } = useDolar(),
-    { removeProduct } = useStore(),
+    [cart, setCart] = useLocalStorage("cart", []),
     { id, img, name, price } = props,
     price_product = formatPrice((price * dolar).toFixed(2)),
     image = img == 200 ? DEFAULT_IMG : img;
@@ -16,6 +16,7 @@ function CartProduct(props) {
     <li className="flex items-center justify-between">
       <div className="flex items-center space-x-4">
         <img
+          alt="Imagen de producto"
           className="w-16 h-16 object-cover object-center bg-white rounded-md"
           src={image}
           loading="lazy"
@@ -28,7 +29,7 @@ function CartProduct(props) {
       <Icon
         className="cursor-pointer hover:bg-white duration-100 rounded-lg p-1 w-8 h-8 opacity-70"
         size={28}
-        onClick={() => removeProduct(id)}
+        onClick={() => setCart(cart.filter(p => p.id != id))}
       />
     </li>
   );

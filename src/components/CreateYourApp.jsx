@@ -30,6 +30,7 @@ function CreateYourApp() {
       </div>
       <div className="w-full lg:w-3/6 flex justify-center items-center">
         <img
+          alt="Imagen de sitio web"
           width={320}
           height={320}
           className="object-cover object-center select-none"

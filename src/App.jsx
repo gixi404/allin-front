@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Location from "./pages/Location";
 import NotFound from "./pages/NotFound";
 import Products from "./pages/Products";
+import Success from "./pages/Success";
 import { ADMIN_PATH } from "./utils/consts";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/products" component={Products} />
         <Route path="/location" component={Location} />
         <Route path="/aboutus" component={AboutUs} />
+        <Route path="/success" component={Success} />
         <Route path="/cart" component={Cart} />
         <Route path={ADMIN_PATH} component={Admin} />
         <Route path="*" component={NotFound} />

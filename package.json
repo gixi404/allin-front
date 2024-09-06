@@ -31,8 +31,7 @@
     "react-dom": "^18.3.1",
     "react-hot-toast": "^2.4.1",
     "tailwind-merge": "^2.5.2",
-    "wouter": "^3.3.1",
-    "zustand": "^4.5.5"
+    "wouter": "^3.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
