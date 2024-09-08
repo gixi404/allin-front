@@ -33,7 +33,7 @@ function Cart() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ cart: myCart() }),
-          // mode: "cors",
+          mode: "cors",
         });
         const { preferenceId } = await res.json();
         setPreferenceId(preferenceId);
