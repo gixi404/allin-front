@@ -4,16 +4,23 @@
   "version": "1.0.0",
   "type": "module",
   "license": "Apache-2.0",
-  "description": "All In informática",
+  "description": "Frontend de All In",
   "author": {
     "name": "gixi",
-    "url": "https://github.com/gixilym",
+    "url": "https://gixi.dev",
     "email": "gixi.tsx@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gixilym/allin.git"
+    "url": "https://github.com/gixi/allin-front",
+    "directory": ".",
+    "branch": "trunk"
   },
+  "keywords": [
+    "allin",
+    "frontend",
+    "react"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
