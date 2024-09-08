@@ -11,12 +11,7 @@ const CHECKOUT_URL =
 
 const PURCHASES_ENABLED = true;
 
-const INITIAL_PROD = {
-  name: "",
-  description: "",
-  price: 0,
-  img: "",
-};
+const INITIAL_PROD = { name: "", description: "", price: 0, img: "" };
 
 export {
   ADMIN_PATH,
@@ -25,5 +20,6 @@ export {
   DOLAR_STATUS_URL,
   INITIAL_PROD,
   PURCHASES_ENABLED,
-  TABLE,
+  TABLE
 };
+
