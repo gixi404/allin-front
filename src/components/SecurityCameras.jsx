@@ -8,8 +8,8 @@ function SecurityCameras() {
       <div className="w-full lg:w-3/6 flex justify-center items-center">
         <img
           alt="Imagen de seguridad"
-          width={310}
-          height={310}
+          width={300}
+          height={300}
           className="object-cover object-center select-none rounded-xl"
           src={img}
         />

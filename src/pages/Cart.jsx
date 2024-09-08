@@ -12,28 +12,28 @@ import { formatPrice, len } from "../utils/helpers";
 const KEY = import.meta.env.VITE_MP_PUBLIC;
 
 function Cart() {
-  const [cart, setCart] = useLocalStorage("cart", []),
+  const [cart] = useLocalStorage("cart", []),
     { dolar, isLoading } = useDolar(),
     calculatePrice = cart.reduce((acc, i) => acc + i.price, 0) * dolar,
     total = formatPrice(calculatePrice.toFixed(2)),
-    [preferenceId, setPreferenceId] = useState(null);
+    [preferenceId, setPreferenceId] = useState(null),
+    myCart = () =>
+      cart.map(p => ({
+        id: p.id,
+        title: p.name,
+        unit_price: p.price * dolar,
+      }));
 
   useEffect(() => {
     if (len(cart) == 0) return;
     initMercadoPago(KEY, { locale: "es-AR" });
     async function getPreference() {
-      const myCart = cart.map(p => ({
-        id: p.id,
-        title: p.name,
-        unit_price: p.price * dolar,
-      }));
-      3;
       try {
         const res = await fetch(CHECKOUT_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ cart: myCart }),
-          mode: "cors",
+          body: JSON.stringify({ cart: myCart() }),
+          // mode: "cors",
         });
         const { preferenceId } = await res.json();
         setPreferenceId(preferenceId);

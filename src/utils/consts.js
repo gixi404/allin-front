@@ -6,7 +6,8 @@ const DOLAR_STATUS_URL = "https://dolarapi.com/v1/estado";
 
 const ADMIN_PATH = "/030a941e-79c3-4fac-9f8e-72843da6d3df";
 
-const CHECKOUT_URL = "https://allin-server.vercel.app/mp_checkout_allin_xyz";
+const CHECKOUT_URL =
+  "https://allin-server-production.up.railway.app/mp_checkout_allin_xyz";
 
 const PURCHASES_ENABLED = true;
 
