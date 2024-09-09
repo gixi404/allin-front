@@ -7,6 +7,9 @@ const plainStr = str => normalizeStr(str.toLowerCase().trim());
 
 const len = str => str.length;
 
+const checkDescrip = (str, admin = false) =>
+  str == 300 || str == "" ? (admin ? "-" : "sin descripción") : str;
+
 function formatPrice(value) {
   return new Intl.NumberFormat("es-AR", {
     style: "decimal",
@@ -62,4 +65,5 @@ export {
   msgWhatsApp,
   plainStr,
   checkDolarStatus,
+  checkDescrip,
 };

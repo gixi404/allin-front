@@ -1,5 +1,6 @@
 import { Trash as DeleteIcon, Pencil as EditIcon } from "lucide-react";
 import propTypes from "prop-types";
+import { checkDescrip } from "../../utils/helpers";
 
 function ProductAdmin({
   name,
@@ -15,7 +16,7 @@ function ProductAdmin({
     <tr className="border-b-2 border-slate-300 bg-gray-100 text-gray-900">
       <td className="px-4 py-2 text-center">{name}</td>
       <td className="px-4 py-2 text-center">
-        {description == 300 ? "-" : description}
+        {checkDescrip(description, true)}
       </td>
       <td className="px-4 py-2 text-center">${price}</td>
       <td className="px-4 py-2">

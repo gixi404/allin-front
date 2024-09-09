@@ -3,7 +3,7 @@ import { updateProduct } from "../../database/supabase";
 import { INITIAL_PROD } from "../../utils/consts";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { len } from "../../utils/helpers";
+import { checkDescrip, len } from "../../utils/helpers";
 
 function ModalEditAdmin({
   setShowEditModal,
@@ -132,7 +132,7 @@ function ModalEditAdmin({
             <input
               onChange={handleDescription}
               defaultValue={
-                productSelected.description == 300
+                checkDescrip(productSelected.description, true) == "-"
                   ? ""
                   : productSelected.description
               }
