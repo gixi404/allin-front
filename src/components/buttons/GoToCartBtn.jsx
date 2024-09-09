@@ -1,10 +1,10 @@
-import { useLocalStorage } from "@uidotdev/usehooks";
+import { useSessionStorage } from "@uidotdev/usehooks";
 import { Link, useLocation } from "wouter";
 import { len } from "../../utils/helpers";
 import CartBtn from "./CartBtn";
 
 function GoToCartBtn() {
-  const [cart] = useLocalStorage("cart", []);
+  const [cart] = useSessionStorage("cart", []);
   const pathname = useLocation()[0];
 
   if (len(cart) == 0 || pathname == "/cart") return <></>;

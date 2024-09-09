@@ -1,8 +1,8 @@
-import { useLocalStorage } from "@uidotdev/usehooks";
+import { useSessionStorage } from "@uidotdev/usehooks";
 import { useEffect } from "react";
 
 function Success() {
-  const [, setCart] = useLocalStorage("cart", []);
+  const [, setCart] = useSessionStorage("cart", []);
 
   useEffect(() => {
     if (location.pathname == "/success") setCart([]);

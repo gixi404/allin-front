@@ -1,4 +1,4 @@
-import { useLocalStorage } from "@uidotdev/usehooks";
+import { useSessionStorage } from "@uidotdev/usehooks";
 import propTypes from "prop-types";
 import { Link } from "wouter";
 import useDolar from "../hooks/useDolar";
@@ -6,7 +6,7 @@ import { formatPrice } from "../utils/helpers";
 import DEFAULT_IMG from "/logo-img.png";
 
 function Product(props) {
-  const [myCart, setCart] = useLocalStorage("cart", []),
+  const [myCart, setCart] = useSessionStorage("cart", []),
     { dolar, isLoading, status } = useDolar(),
     { id, img, price, name, description } = props,
     showBtn = status && dolar != 0 && !isLoading,

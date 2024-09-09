@@ -6,8 +6,10 @@ const DOLAR_STATUS_URL = "https://dolarapi.com/v1/estado";
 
 const ADMIN_PATH = "/030a941e-79c3-4fac-9f8e-72843da6d3df";
 
-const CHECKOUT_URL =
-  "https://bc3d90ae-e8d5-4eb5-b659-03fd9b004083.up.railway.app/mp_checkout_allin_xyz";
+const CHECKOUT_URL = "http://localhost:3000/mp_checkout_allin_xyz";
+
+// const CHECKOUT_URL =
+// "https://bc3d90ae-e8d5-4eb5-b659-03fd9b004083.up.railway.app/mp_checkout_allin_xyz";
 
 const PURCHASES_ENABLED = true;
 

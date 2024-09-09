@@ -1,5 +1,5 @@
 import { initMercadoPago } from "@mercadopago/sdk-react";
-import { useLocalStorage } from "@uidotdev/usehooks";
+import { useSessionStorage } from "@uidotdev/usehooks";
 import { useEffect, useState } from "react";
 import BuyBtn from "../components/buttons/BuyBtn";
 import CartProduct from "../components/CartProduct";
@@ -12,11 +12,12 @@ import { formatPrice, len } from "../utils/helpers";
 const KEY = import.meta.env.VITE_MP_PUBLIC;
 
 function Cart() {
-  const [cart] = useLocalStorage("cart", []),
+  const [cart] = useSessionStorage("cart", []),
     { dolar, isLoading } = useDolar(),
     calculatePrice = cart.reduce((acc, i) => acc + i.price, 0) * dolar,
     total = formatPrice(calculatePrice.toFixed(2)),
     [preferenceId, setPreferenceId] = useState(null),
+    hasProducts = len(cart) > 0,
     myCart = () =>
       cart.map(p => ({
         id: p.id,
@@ -25,23 +26,24 @@ function Cart() {
       }));
 
   useEffect(() => {
-    if (len(cart) == 0) return;
+    if (!hasProducts || preferenceId != null) return;
     initMercadoPago(KEY, { locale: "es-AR" });
-    async function getPreference() {
-      try {
-        const res = await fetch(CHECKOUT_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ cart: myCart() }),
-        });
-        const { preferenceId } = await res.json();
-        setPreferenceId(preferenceId);
-      } catch (err) {
-        console.error(`catch 'getPreference' ${err.message}`);
-      }
-    }
     getPreference();
   }, [dolar]);
+
+  async function getPreference() {
+    try {
+      const res = await fetch(CHECKOUT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cart: myCart() }),
+      });
+      const { preferenceId } = await res.json();
+      setPreferenceId(preferenceId);
+    } catch (err) {
+      console.error(`catch 'getPreference' ${err.message}`);
+    }
+  }
 
   return (
     <section className="w-[100vw] lg:w-full h-full lg:min-w-[1100px] min-h-[400px] flex justify-center items-start">
@@ -67,9 +69,9 @@ function Cart() {
               <p className="text-xl lg:text-2xl font-semibold">Total</p>
               <p className="text-xl lg:text-2xl font-bold">${total}</p>
             </div>
-            {len(cart) > 0 && <BuyBtn preferenceId={preferenceId} />}
+            {hasProducts && <BuyBtn preferenceId={preferenceId} />}
             <hr className="w-full border border-slate-400 rounded-lg" />
-            {len(cart) > 0 ? (
+            {hasProducts ? (
               <ul className="space-y-4 w-full">
                 {cart.map(p => (
                   <CartProduct key={p.id} {...p} />

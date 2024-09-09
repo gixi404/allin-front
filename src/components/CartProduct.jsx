@@ -1,4 +1,4 @@
-import { useLocalStorage } from "@uidotdev/usehooks";
+import { useSessionStorage } from "@uidotdev/usehooks";
 import { Trash as Icon } from "lucide-react";
 import propTypes from "prop-types";
 import useDolar from "../hooks/useDolar";
@@ -7,7 +7,7 @@ import DEFAULT_IMG from "/logo-img.png";
 
 function CartProduct(props) {
   const { dolar } = useDolar(),
-    [cart, setCart] = useLocalStorage("cart", []),
+    [cart, setCart] = useSessionStorage("cart", []),
     { id, img, name, price } = props,
     price_product = formatPrice((price * dolar).toFixed(2)),
     image = img == 200 ? DEFAULT_IMG : img;
