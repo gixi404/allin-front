@@ -1,10 +1,10 @@
-import { useSessionStorage } from "@uidotdev/usehooks";
+import { useLocalStorage } from "@uidotdev/usehooks";
 import propTypes from "prop-types";
 import Loader from "../Loader";
 
 function CartForm({ validation, loadingMP }) {
-  const [name, setName] = useSessionStorage("name", "");
-  const [phone, setPhone] = useSessionStorage("phone", "");
+  const [name, setName] = useLocalStorage("name", "");
+  const [phone, setPhone] = useLocalStorage("phone", "");
 
   if (loadingMP)
     return (

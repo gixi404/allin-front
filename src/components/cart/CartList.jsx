@@ -21,9 +21,11 @@ function CartItems({ cart, showMP, setShowMP }) {
           <CartProduct key={p.id} showMP={showMP} {...p} />
         ))}
       </ul>
-      <div className="w-full justify-center items-center flex">
-        <ProductsBtn text="agregar productos" />
-      </div>
+      {!showMP && (
+        <div className="w-full justify-center items-center flex">
+          <ProductsBtn text="agregar productos" />
+        </div>
+      )}
     </>
   );
 }
