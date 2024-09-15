@@ -9,7 +9,7 @@ function LoginAdmin() {
       provider: "google",
       options: {
         redirectTo:
-          "http://localhost:5173/030a941e-79c3-4fac-9f8e-72843da6d3df",
+          "https://allinlujan.com.ar/030a941e-79c3-4fac-9f8e-72843da6d3df",
       },
     });
   }
