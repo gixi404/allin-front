@@ -42,12 +42,9 @@ function Cart() {
   useEffect(() => initMercadoPago(MP_KEY, { locale: "es-AR" }), []);
 
   useEffect(() => {
-    if (hasProducts) {
-      getPreference().then(id => {
-        if (id) setPreferenceId(id);
-      });
-    } else setPreferenceId(null);
-  }, [myCart]);
+    if (hasProducts) getPreference().then(id => id && setPreferenceId(id));
+    else setPreferenceId(null);
+  }, [myCart, dolar]);
 
   async function getPreference() {
     try {

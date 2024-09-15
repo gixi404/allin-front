@@ -3,7 +3,6 @@ import { Link } from "wouter";
 import supabase from "../../database/supabase";
 
 function LoginAdmin() {
-  //! cambiar en prod
   function logIn() {
     return supabase.auth.signInWithOAuth({
       provider: "google",
