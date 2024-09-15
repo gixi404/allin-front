@@ -18,7 +18,8 @@ function Header() {
       >
         <img src={logo} width={45} height={45} alt="logo" />
         <h1 className="text-lg lg:text-[26px] font-[500]">
-          All In informática
+          All <span className="text-orange-600">In</span>
+          formática
         </h1>
       </Link>
       <nav className="hidden lg:flex justify-center items-center gap-x-8 text-lg font-[500]">

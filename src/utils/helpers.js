@@ -8,21 +8,21 @@ const plainStr = str => normalizeStr(str.toLowerCase().trim());
 const len = str => str.length;
 
 const checkDescrip = (str, admin = false) =>
-  str == 300 || str == "" ? (admin ? "-" : "sin descripción") : str;
+  str == 300 || str == "" ? (admin ? "-" : "") : str;
 
-function formatPrice(value) {
+const roundPrice = price => Math.ceil(price / 500) * 500;
+
+function formatPrice(price) {
   return new Intl.NumberFormat("es-AR", {
     style: "decimal",
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  }).format(value);
+  }).format(price);
 }
 
 function msgWhatsApp(to, msg) {
-  const url = numberPhone =>
-    `https://api.whatsapp.com/send?phone=+${numberPhone}&text=${encodeURI(
-      msg
-    )}`;
+  const url = num =>
+    `https://api.whatsapp.com/send?phone=+${num}&text=${encodeURI(msg)}`;
 
   switch (to) {
     case "allin":
@@ -59,11 +59,13 @@ async function checkDolarStatus() {
 }
 
 export {
+  checkDescrip,
+  checkDolarStatus,
   formatPrice,
   getDolarPrice,
   len,
   msgWhatsApp,
   plainStr,
-  checkDolarStatus,
-  checkDescrip,
+  roundPrice
 };
+

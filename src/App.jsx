@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Route, Switch } from "wouter";
 import Layout from "./components/Layout";
 import AboutUs from "./pages/AboutUs";
@@ -9,7 +10,6 @@ import NotFound from "./pages/NotFound";
 import Products from "./pages/Products";
 import Success from "./pages/Success";
 import { ADMIN_PATH } from "./utils/consts";
-import { useState } from "react";
 
 function App() {
   const [admin, setAdmin] = useState("");

@@ -1,4 +1,3 @@
-import FacebookBtn from "./buttons/FacebookBtn";
 import InstagramBtn from "./buttons/InstagramBtn";
 
 function Footer() {
@@ -7,8 +6,8 @@ function Footer() {
       <div className="flex justify-center items-start flex-col gap-y-2">
         <span className="text-xl">Encontranos</span>
         <p>San Martín 537, Luján de Cuyo, Mendoza.</p>
-        <p>+54 261 123 4567 </p>
-        <p>email@falso.com</p>
+        <p>+54 261 498-8748</p>
+        <p>pedidos@allinlujan.com.ar</p>
       </div>
       <div className="flex justify-center items-start flex-col gap-y-2 text-sm">
         <span className="text-xl">Horarios</span>
@@ -33,7 +32,6 @@ function Footer() {
       <div className="flex justify-center items-center flex-col gap-y-2">
         <span className="text-xl">¡Seguinos!</span>
         <InstagramBtn />
-        <FacebookBtn />
       </div>
     </footer>
   );

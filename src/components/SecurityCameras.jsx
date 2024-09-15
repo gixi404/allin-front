@@ -1,11 +1,12 @@
 import { Cctv as Icon } from "lucide-react";
 import { msgWhatsApp } from "../utils/helpers";
+import Section from "./Section";
 import img from "/camaraseguridad-img.png";
 
 function SecurityCameras() {
   return (
-    <section className="w-full px-6 lg:px-0 flex flex-col-reverse lg:flex-row text-black justify-between items-start rounded-lg gap-2 lg:gap-6 mt-20">
-      <div className="w-full lg:w-3/6 flex justify-center items-center">
+    <Section sectionClass="flex-col-reverse lg:flex-row mt-20 px-6 lg:px-0">
+      <div className="w-full lg:w-3/6 flex justify-center items-center mt-6">
         <img
           alt="Imagen de seguridad"
           width={300}
@@ -15,7 +16,7 @@ function SecurityCameras() {
         />
       </div>
       <div className="w-full lg:w-3/6 h-[330px] flex flex-col justify-between items-center">
-        <h2 className="w-full text-5xl tracking-tight text-balance font-[700] text-center lg:text-start">
+        <h2 className="w-full text-4xl lg:text-5xl tracking-tight text-balance font-[700] text-center lg:text-start">
           Implementación de cámaras de seguridad
         </h2>
         <p className="text-[19px] font-[500] text-pretty w-full text-center lg:text-start">
@@ -33,11 +34,11 @@ function SecurityCameras() {
             className="bg-slate-800 text-lg lowercase font-[500] text-white px-4 hover:bg-slate-700 duration-150 hover:scale-95 py-3 rounded-xl border-2 border-rose-300/40 flex justify-center items-center gap-x-3"
           >
             <Icon size={28} strokeWidth={1.7} />
-            <span>Consultar servicio</span>
+            <span className="capitalize">Consultar servicio</span>
           </a>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 

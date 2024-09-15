@@ -1,13 +1,13 @@
-import { useSessionStorage } from "@uidotdev/usehooks";
 import { Link, useLocation } from "wouter";
 import { len } from "../../utils/helpers";
+import { useStore } from "../../utils/store";
 import CartBtn from "./CartBtn";
 
 function GoToCartBtn() {
-  const [cart] = useSessionStorage("cart", []);
+  const { myCart } = useStore();
   const pathname = useLocation()[0];
 
-  if (len(cart) == 0 || pathname == "/cart") return <></>;
+  if (len(myCart) == 0 || pathname == "/cart") return <></>;
 
   return (
     <Link

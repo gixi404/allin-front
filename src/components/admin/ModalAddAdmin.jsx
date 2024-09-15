@@ -1,6 +1,6 @@
 import propTypes from "prop-types";
 import { useState } from "react";
-import { addProduct } from "../../database/supabase";
+import { addProduct } from "../../database/crud.supabase.js";
 import { len } from "../../utils/helpers";
 import { toast } from "react-hot-toast";
 

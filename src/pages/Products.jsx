@@ -3,17 +3,19 @@ import { useEffect, useState } from "react";
 import Loader from "../components/Loader";
 import NoMatches from "../components/NoMatches";
 import Product from "../components/Product";
-import { getProducts } from "../database/supabase";
+import Section from "../components/Section";
+import { getProducts } from "../database/crud.supabase.js";
 import { len, plainStr } from "../utils/helpers";
 
 function Products() {
   const [products, setProducts] = useState([]),
     [isLoading, setIsLoading] = useState(true),
     [val, setVal] = useState(""),
+    onlyVisibles = products.filter(p => p.visible),
     filteredProducts =
       val != ""
-        ? products.filter(p => plainStr(p.name).includes(plainStr(val)))
-        : products;
+        ? onlyVisibles.filter(p => plainStr(p.name).includes(plainStr(val)))
+        : onlyVisibles;
 
   useEffect(() => {
     (async function () {
@@ -24,7 +26,7 @@ function Products() {
   }, []);
 
   return (
-    <section className="w-[100vw] lg:w-full flex flex-col justify-start items-start gap-y-20 lg:min-w-[1100px] lg:min-h-[400px]">
+    <Section sectionClass="flex-col !justify-start gap-y-20">
       <div className="w-full flex justify-between items-center px-2 flex-col lg:flex-row gap-y-6">
         <h3 className="text-4xl lg:text-5xl text-slate-900 tracking-tight font-semibold w-full text-center lg:text-start">
           Productos
@@ -55,7 +57,7 @@ function Products() {
           )}
         </ul>
       )}
-    </section>
+    </Section>
   );
 }
 

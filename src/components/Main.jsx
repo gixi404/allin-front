@@ -1,6 +1,6 @@
-import { CpuIcon, ShoppingBasket as ProductIcon } from "lucide-react";
-import { Link } from "wouter";
+import { CpuIcon } from "lucide-react";
 import { msgWhatsApp } from "../utils/helpers";
+import ProductsBtn from "./buttons/ProductsBtn";
 import mainImg from "/main-img.png";
 
 function Main() {
@@ -21,17 +21,11 @@ function Main() {
           Insumos informáticos y servicio técnico
         </h2>
         <p className="text-[19px] font-[500] text-pretty w-full text-center lg:text-start">
-          Ofrecemos una amplia variedad de insumos informáticos y contamos con
-          técnicos en reparación de computadoras, notebooks, impresoras y más.
+          Ofrecemos una variedad de insumos informáticos y contamos con técnicos
+          en reparación de computadoras, notebooks, impresoras y más.
         </p>
         <div className="w-full flex flex-col lg:flex-row justify-start items-center gap-4">
-          <Link
-            to="/products"
-            className="bg-slate-800 text-lg lowercase font-[500] text-white px-4 hover:bg-slate-700 duration-150 hover:scale-95 py-3 rounded-xl border-2 border-rose-300/40 flex justify-center items-center gap-x-3 w-full max-w-[300px] lg:w-max"
-          >
-            <ProductIcon size={28} strokeWidth={1.5} />
-            <span>productos</span>
-          </Link>
+          <ProductsBtn text="productos" />
           <a
             href={msgWhatsApp(
               "allin",
@@ -39,10 +33,10 @@ function Main() {
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-xl border-2 border-orange-500/50 px-4 py-2.5 flex justify-center items-center gap-x-3 font-[500] hover:bg-orange-400/90 bg-orange-400 duration-150 hover:scale-95 text-black text-lg lowercase w-full max-w-[300px] lg:w-max"
+            className="rounded-xl border-2 border-orange-500/50 px-4 py-2.5 flex justify-center items-center gap-x-3 font-[500] hover:bg-orange-400/90 bg-orange-400 duration-150 hover:scale-95 text-black text-lg capitalize w-full max-w-[320px] lg:w-max"
           >
             <CpuIcon className="size-8" strokeWidth={1.5} />
-            Solicitar servicio técnico
+            servicio técnico
           </a>
         </div>
       </div>

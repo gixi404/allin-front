@@ -1,89 +1,137 @@
 import { initMercadoPago } from "@mercadopago/sdk-react";
 import { useSessionStorage } from "@uidotdev/usehooks";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import BuyBtn from "../components/buttons/BuyBtn";
-import CartProduct from "../components/CartProduct";
-import EmptyCart from "../components/EmptyCart";
+import CartForm from "../components/cart/CartForm";
+import CartList from "../components/cart/CartList";
+import CartTitle from "../components/cart/CartTitle";
+import EmptyCart from "../components/cart/EmptyCart";
 import Loader from "../components/Loader";
+import Section from "../components/Section";
 import useDolar from "../hooks/useDolar";
 import { CHECKOUT_URL } from "../utils/consts";
-import { formatPrice, len } from "../utils/helpers";
+import { formatPrice, roundPrice } from "../utils/helpers";
+import { useStore } from "../utils/store";
 
-const KEY = import.meta.env.VITE_MP_PUBLIC;
+const MP_KEY = import.meta.env.VITE_MP_PUBLIC;
 
 function Cart() {
-  const [cart] = useSessionStorage("cart", []),
+  const { myCart } = useStore(),
     { dolar, isLoading } = useDolar(),
-    calculatePrice = cart.reduce((acc, i) => acc + i.price, 0) * dolar,
-    total = formatPrice(calculatePrice.toFixed(2)),
+    hasProducts = myCart && myCart.length > 0,
+    [showMP, setShowMP] = useState(false),
+    [name] = useSessionStorage("name", ""),
+    [phone] = useSessionStorage("phone", ""),
     [preferenceId, setPreferenceId] = useState(null),
-    hasProducts = len(cart) > 0,
-    myCart = () =>
-      cart.map(p => ({
-        id: p.id,
-        title: p.name,
-        unit_price: p.price * dolar,
-      }));
+    [loadingMP, setLoadingMP] = useState(false),
+    cartWithPrices = myCart.map(p => ({
+      ...p,
+      roundedPrice: roundPrice(p.price * dolar),
+    })),
+    totalAmount = cartWithPrices.reduce((acc, p) => acc + p.roundedPrice, 0),
+    total = formatPrice(totalAmount),
+    cartToMP = cartWithPrices.map(p => ({
+      id: p.id,
+      title: p.name,
+      unit_price: p.roundedPrice,
+      quantity: 1,
+      currency_id: "ARS",
+    }));
+
+  useEffect(() => initMercadoPago(MP_KEY, { locale: "es-AR" }), []);
 
   useEffect(() => {
-    if (!hasProducts || preferenceId != null) return;
-    initMercadoPago(KEY, { locale: "es-AR" });
-    getPreference();
-  }, [dolar]);
+    if (hasProducts) {
+      getPreference().then(id => {
+        if (id) setPreferenceId(id);
+      });
+    } else setPreferenceId(null);
+  }, [myCart]);
 
   async function getPreference() {
     try {
       const res = await fetch(CHECKOUT_URL, {
+        mode: "cors",
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cart: myCart() }),
+        body: JSON.stringify({ cart: cartToMP, name, phone }),
       });
       const { preferenceId } = await res.json();
-      setPreferenceId(preferenceId);
+      return preferenceId;
     } catch (err) {
       console.error(`catch 'getPreference' ${err.message}`);
     }
   }
 
+  async function handleBuy() {
+    if (!validateFields()) return;
+    setLoadingMP(true);
+
+    try {
+      const id = await getPreference();
+      if (id) {
+        setPreferenceId(id);
+        setShowMP(true);
+      }
+    } finally {
+      setLoadingMP(false);
+    }
+  }
+
+  function validateFields() {
+    if (!name) {
+      toast.error("Ingresa un nombre");
+      return false;
+    }
+
+    if (name.length < 3) {
+      toast.error("Ingresa un nombre más largo");
+      return false;
+    }
+
+    if (name.length > 25) {
+      toast.error("Ingresa un nombre más corto");
+      return false;
+    }
+
+    if (!phone) {
+      toast.error("Ingresa un celular");
+      return false;
+    }
+
+    if (phone.length < 6 || phone.length > 15) {
+      toast.error("Ingresa un celular válido");
+      return false;
+    }
+
+    return true;
+  }
+
   return (
-    <section className="w-[100vw] lg:w-full h-full lg:min-w-[1100px] min-h-[400px] flex justify-center items-start">
+    <Section sectionClass="sm:-mt-10 gap-10 flex-col sm:flex-row px-6 sm:px-0">
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="w-full flex flex-col lg:flex-row justify-center items-start gap-10 px-4 lg:px-8">
-          <div className="w-full lg:w-3/6 flex flex-col justify-start items-center gap-y-2 lg:gap-y-4">
-            <h3 className="w-full text-2xl lg:text-3xl font-semibold">
-              Aviso sobre tu compra
-            </h3>
-            <p className="w-full text-pretty text-sm lg:text-lg">
-              El retiro de la compra se realiza de manera presencial en nuestro
-              local. La compra una vez realizada, estará disponible su retiro
-              hasta dentro de los próximos 3 días hábiles. En caso de no contar
-              con stock de un producto en particular se reembolsará el valor del
-              producto en su totalidad. <br /> <br /> Para cualquier consulta o
-              reclamo comuniquese vía WhatsApp a este número: +54 261 123-4567.
-            </p>
-          </div>
-          <div className="w-full lg:w-3/6 border-2 p-6 rounded-lg border-slate-400 flex flex-col items-start justify-center gap-y-8">
-            <div className="flex items-center justify-between w-full">
-              <p className="text-xl lg:text-2xl font-semibold">Total</p>
-              <p className="text-xl lg:text-2xl font-bold">${total}</p>
-            </div>
-            {hasProducts && <BuyBtn preferenceId={preferenceId} />}
-            <hr className="w-full border border-slate-400 rounded-lg" />
+        <>
+          <div className="w-full lg:w-3/6 border-2 p-6 rounded-lg border-slate-400 bg-slate-200 flex flex-col items-start justify-center gap-y-8">
             {hasProducts ? (
-              <ul className="space-y-4 w-full">
-                {cart.map(p => (
-                  <CartProduct key={p.id} {...p} />
-                ))}
-              </ul>
+              <>
+                <CartTitle showMP={showMP} total={total} />
+                {showMP ? (
+                  <BuyBtn preferenceId={preferenceId} />
+                ) : (
+                  <CartForm validation={handleBuy} loadingMP={loadingMP} />
+                )}
+                <CartList cart={myCart} showMP={showMP} setShowMP={setShowMP} />
+              </>
             ) : (
               <EmptyCart />
             )}
           </div>
-        </div>
+        </>
       )}
-    </section>
+    </Section>
   );
 }
 

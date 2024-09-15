@@ -1,5 +1,5 @@
 import propTypes from "prop-types";
-import { updateProduct } from "../../database/supabase";
+import { updateProduct } from "../../database/crud.supabase.js";
 import { INITIAL_PROD } from "../../utils/consts";
 import toast from "react-hot-toast";
 import { useState } from "react";
@@ -110,7 +110,8 @@ function ModalEditAdmin({
           </div>
           <div className="flex flex-col gap-y-2">
             <label htmlFor="price" className="font-medium text-lg">
-              Precio en dólares
+              Precio en dólares&nbsp;
+              <span className="text-sm">(se redondea automáticamente)</span>
             </label>
             <input
               onChange={handlePrice}

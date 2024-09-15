@@ -1,25 +1,29 @@
 import propTypes from "prop-types";
 import { toast } from "react-hot-toast";
-import { deleteProduct } from "../../database/crud.supabase.js";
+import { updateProduct } from "../../database/crud.supabase.js";
 import { INITIAL_PROD } from "../../utils/consts";
 
-function ModalDeleteAdmin({
-  setShowDeleteModal,
+function ModalHiddenAdmin({
+  setShowVisibleModal,
   setProductSelected,
   productSelected,
-  products,
   setProducts,
+  products,
 }) {
   function resetData() {
     setProductSelected(INITIAL_PROD);
-    setShowDeleteModal(false);
+    setShowVisibleModal(false);
   }
 
-  function removeProduct() {
+  function toggleVisible() {
+    const updatedProduct = { ...productSelected, visible: false },
+      updatedProducts = products.map(p =>
+        p.id == productSelected.id ? updatedProduct : p
+      );
     resetData();
-    setProducts(products.filter(p => p.id != productSelected.id));
-    deleteProduct(productSelected.id);
-    toast.success("Producto eliminado");
+    updateProduct(updatedProduct);
+    setProducts(updatedProducts);
+    toast.success("Producto oculto");
   }
 
   return (
@@ -29,7 +33,7 @@ function ModalDeleteAdmin({
     >
       <div className="bg-white p-6 rounded-lg flex-col flex justify-center items-center w-full max-w-lg">
         <p className="text-xl font-semibold w-full text-pretty">
-          ¿Estás seguro que quieres eliminar {productSelected.name}?
+          ¿Estás seguro que quieres ocultar {productSelected.name}?
         </p>
         <div className="flex gap-2 mt-8 justify-end items-center w-full">
           <button
@@ -40,11 +44,11 @@ function ModalDeleteAdmin({
             Cancelar
           </button>
           <button
-            onClick={removeProduct}
+            onClick={toggleVisible}
             type="button"
-            className="bg-red-600 hover:bg-red-500 duration-75 text-white px-8 py-1 text-lg rounded-lg border-2 border-red-300"
+            className="bg-slate-600 hover:bg-slate-500 duration-75 text-white px-8 py-1 text-lg rounded-lg border-2 border-slate-300"
           >
-            Eliminar
+            Ocultar producto
           </button>
         </div>
       </div>
@@ -52,10 +56,10 @@ function ModalDeleteAdmin({
   );
 }
 
-export default ModalDeleteAdmin;
+export default ModalHiddenAdmin;
 
-ModalDeleteAdmin.propTypes = {
-  setShowDeleteModal: propTypes.func,
+ModalHiddenAdmin.propTypes = {
+  setShowVisibleModal: propTypes.func,
   setProductSelected: propTypes.func,
   productSelected: propTypes.object,
   setProducts: propTypes.func,
