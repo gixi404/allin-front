@@ -1,5 +1,5 @@
 import { initMercadoPago } from "@mercadopago/sdk-react";
-import { useSessionStorage } from "@uidotdev/usehooks";
+import { useLocalStorage } from "@uidotdev/usehooks";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import BuyBtn from "../components/buttons/BuyBtn";
@@ -11,7 +11,7 @@ import Loader from "../components/Loader";
 import Section from "../components/Section";
 import useDolar from "../hooks/useDolar";
 import { CHECKOUT_URL } from "../utils/consts";
-import { formatPrice, roundPrice } from "../utils/helpers";
+import { formatPrice, len, roundPrice } from "../utils/helpers";
 import { useStore } from "../utils/store";
 
 const MP_KEY = import.meta.env.VITE_MP_PUBLIC;
@@ -19,10 +19,10 @@ const MP_KEY = import.meta.env.VITE_MP_PUBLIC;
 function Cart() {
   const { myCart } = useStore(),
     { dolar, isLoading } = useDolar(),
-    hasProducts = myCart && myCart.length > 0,
+    hasProducts = myCart && len(myCart) > 0,
     [showMP, setShowMP] = useState(false),
-    [name] = useSessionStorage("name", ""),
-    [phone] = useSessionStorage("phone", ""),
+    [name] = useLocalStorage("name", ""),
+    [phone] = useLocalStorage("phone", ""),
     [preferenceId, setPreferenceId] = useState(null),
     [loadingMP, setLoadingMP] = useState(false),
     cartWithPrices = myCart.map(p => ({
@@ -85,12 +85,12 @@ function Cart() {
       return false;
     }
 
-    if (name.length < 3) {
+    if (len(name) < 3) {
       toast.error("Ingresa un nombre más largo");
       return false;
     }
 
-    if (name.length > 25) {
+    if (len(name) > 25) {
       toast.error("Ingresa un nombre más corto");
       return false;
     }
@@ -100,7 +100,7 @@ function Cart() {
       return false;
     }
 
-    if (phone.length < 6 || phone.length > 15) {
+    if (len(phone) < 6 || len(phone) > 15) {
       toast.error("Ingresa un celular válido");
       return false;
     }

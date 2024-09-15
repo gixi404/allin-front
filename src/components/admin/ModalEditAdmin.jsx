@@ -1,8 +1,8 @@
 import propTypes from "prop-types";
+import { useState } from "react";
+import toast from "react-hot-toast";
 import { updateProduct } from "../../database/crud.supabase.js";
 import { INITIAL_PROD } from "../../utils/consts";
-import toast from "react-hot-toast";
-import { useState } from "react";
 import { checkDescrip, len } from "../../utils/helpers";
 
 function ModalEditAdmin({
@@ -26,10 +26,7 @@ function ModalEditAdmin({
       newErrors.name = "El nombre no debe exceder 129 caracteres.";
     }
 
-    if (
-      productSelected.description &&
-      productSelected.description.length > 299
-    ) {
+    if (productSelected.description && len(productSelected.description) > 299) {
       newErrors.description = "La descripción no debe exceder 299 caracteres.";
     }
 
