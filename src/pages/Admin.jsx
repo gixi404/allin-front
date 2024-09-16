@@ -20,14 +20,9 @@ function Admin() {
     return () => subscription.unsubscribe();
   }, []);
 
-  useEffect(() => {
-    //* Agregar a la lista de admin las sesiones.
-    console.log(session);
-  }, [session]);
-
   if (!session) return <LoginAdmin />;
   if (!isAdmin) return <NoAdmin />;
-  return <AdminPanel />;
+  if (isAdmin) return <AdminPanel />;
 }
 
 export default Admin;

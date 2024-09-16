@@ -9,6 +9,7 @@ import Location from "./pages/Location";
 import NotFound from "./pages/NotFound";
 import Products from "./pages/Products";
 import Success from "./pages/Success";
+import TermsAndConditions from "./pages/TermsAndConditions";
 import { ADMIN_PATH } from "./utils/consts";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/aboutus" component={AboutUs} />
           <Route path="/success" component={Success} />
           <Route path="/cart" component={Cart} />
+          <Route path="/termsandconditions" component={TermsAndConditions} />
           <Route path={ADMIN_PATH} component={Admin} />
           <Route path="*" component={NotFound} />
         </Switch>
@@ -45,6 +47,10 @@ function App() {
           <Route path="/aboutus" component={soyGixi ? AboutUs : NotFound} />
           <Route path="/success" component={soyGixi ? Success : NotFound} />
           <Route path="/cart" component={soyGixi ? Cart : NotFound} />
+          <Route
+            path="/termsandconditions"
+            component={soyGixi ? TermsAndConditions : NotFound}
+          />
           <Route path={ADMIN_PATH} component={soyGixi ? Admin : NotFound} />
           <Route path="*" component={NotFound} />
         </Switch>

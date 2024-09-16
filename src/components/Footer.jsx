@@ -7,7 +7,6 @@ function Footer() {
         <span className="text-xl">Encontranos</span>
         <p>San Martín 537, Luján de Cuyo, Mendoza.</p>
         <p>+54 261 498-8748</p>
-        <p>pedidos@allinlujan.com.ar</p>
       </div>
       <div className="flex justify-center items-start flex-col gap-y-2 text-sm">
         <span className="text-xl">Horarios</span>

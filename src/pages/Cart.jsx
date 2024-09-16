@@ -13,6 +13,7 @@ import useDolar from "../hooks/useDolar";
 import { CHECKOUT_URL } from "../utils/consts";
 import { formatPrice, len, roundPrice } from "../utils/helpers";
 import { useStore } from "../utils/store";
+import CartAside from "../components/cart/CartAside";
 
 const MP_KEY = import.meta.env.VITE_MP_PUBLIC;
 
@@ -23,6 +24,7 @@ function Cart() {
     [showMP, setShowMP] = useState(false),
     [name] = useLocalStorage("name", ""),
     [phone] = useLocalStorage("phone", ""),
+    [isChecked, setIsChecked] = useState(false),
     [preferenceId, setPreferenceId] = useState(null),
     [loadingMP, setLoadingMP] = useState(false),
     cartWithPrices = myCart.map(p => ({
@@ -102,6 +104,11 @@ function Cart() {
       return false;
     }
 
+    if (!isChecked) {
+      toast.error("Debes aceptar los términos y condiciones");
+      return false;
+    }
+
     return true;
   }
 
@@ -111,6 +118,7 @@ function Cart() {
         <Loader />
       ) : (
         <>
+          {hasProducts && <CartAside />}
           <div className="w-full lg:w-3/6 border-2 p-6 rounded-lg border-slate-400 bg-slate-200 flex flex-col items-start justify-center gap-y-8">
             {hasProducts ? (
               <>
@@ -118,7 +126,12 @@ function Cart() {
                 {showMP ? (
                   <BuyBtn preferenceId={preferenceId} />
                 ) : (
-                  <CartForm validation={handleBuy} loadingMP={loadingMP} />
+                  <CartForm
+                    validation={handleBuy}
+                    loadingMP={loadingMP}
+                    isChecked={isChecked}
+                    setIsChecked={setIsChecked}
+                  />
                 )}
                 <CartList cart={myCart} showMP={showMP} setShowMP={setShowMP} />
               </>
