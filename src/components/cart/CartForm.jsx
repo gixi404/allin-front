@@ -1,11 +1,12 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import propTypes from "prop-types";
-import Loader from "../Loader";
 import { Link } from "wouter";
+import Loader from "../Loader";
 
-function CartForm({ validation, loadingMP, isChecked, setIsChecked }) {
-  const [name, setName] = useLocalStorage("name", "");
-  const [phone, setPhone] = useLocalStorage("phone", "");
+function CartForm(props) {
+  const [name, setName] = useLocalStorage("name", ""),
+    [phone, setPhone] = useLocalStorage("phone", ""),
+    { validation, loadingMP, isChecked, setIsChecked, msg, setMsg } = props;
 
   if (loadingMP)
     return (
@@ -43,6 +44,18 @@ function CartForm({ validation, loadingMP, isChecked, setIsChecked }) {
           type="number"
           placeholder="261321567"
           className="w-full mt-1 rounded tracking-wide px-4 py-1.5 bg-slate-100 border-2 border-slate-500  placeholder:text-slate-500 outline-0"
+        />
+      </label>
+      <label htmlFor="msg" className="text-lg w-full font-[500] text-slate-900">
+        Mensaje <span className="text-sm text-slate-800">(opcional)</span>
+        <textarea
+          value={msg}
+          onChange={e => setMsg(e.target.value)}
+          required
+          id="msg"
+          placeholder="Escribe tu mensaje..."
+          className="w-full mt-1 rounded resize-none tracking-wide px-4 py-1.5 bg-slate-100 border-2 border-slate-500 placeholder:text-slate-500 placeholder:text-[16px] outline-0"
+          maxLength={300}
         />
       </label>
       <div className="w-full mt-4 flex flex-col justify-center items-center gap-y-1">
@@ -84,4 +97,6 @@ CartForm.propTypes = {
   loadingMP: propTypes.bool.isRequired,
   isChecked: propTypes.bool.isRequired,
   setIsChecked: propTypes.func.isRequired,
+  msg: propTypes.string,
+  setMsg: propTypes.func,
 };

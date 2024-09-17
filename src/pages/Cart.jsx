@@ -3,6 +3,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import BuyBtn from "../components/buttons/BuyBtn";
+import CartAside from "../components/cart/CartAside";
 import CartForm from "../components/cart/CartForm";
 import CartList from "../components/cart/CartList";
 import CartTitle from "../components/cart/CartTitle";
@@ -13,7 +14,6 @@ import useDolar from "../hooks/useDolar";
 import { CHECKOUT_URL } from "../utils/consts";
 import { formatPrice, len, roundPrice } from "../utils/helpers";
 import { useStore } from "../utils/store";
-import CartAside from "../components/cart/CartAside";
 
 const MP_KEY = import.meta.env.VITE_MP_PUBLIC;
 
@@ -27,6 +27,7 @@ function Cart() {
     [isChecked, setIsChecked] = useState(false),
     [preferenceId, setPreferenceId] = useState(null),
     [loadingMP, setLoadingMP] = useState(false),
+    [msg, setMsg] = useState(""),
     cartWithPrices = myCart.map(p => ({
       ...p,
       roundedPrice: roundPrice(p.price * dolar),
@@ -54,7 +55,7 @@ function Cart() {
         mode: "cors",
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cart: cartToMP, name, phone }),
+        body: JSON.stringify({ cart: cartToMP, name, phone, msg }),
       });
       const { preferenceId } = await res.json();
       return preferenceId;
@@ -131,6 +132,8 @@ function Cart() {
                     loadingMP={loadingMP}
                     isChecked={isChecked}
                     setIsChecked={setIsChecked}
+                    msg={msg}
+                    setMsg={setMsg}
                   />
                 )}
                 <CartList cart={myCart} showMP={showMP} setShowMP={setShowMP} />
