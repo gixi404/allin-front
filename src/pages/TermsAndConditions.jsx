@@ -46,10 +46,10 @@ function TermsAndConditions() {
         <p>
           <b> 6. Aceptación y confirmación del pedido</b> <br />
           El contrato de compra se formaliza en el momento en que confirmamos la
-          aceptación del pedido, lo cual en un perido de 1 a 3 días se
-          notificará al usuario a través de el número de celular proporcionado
-          por el usuario. Si el pedido no puede ser aceptado, se procederá a un
-          reembolso completo.
+          aceptación del pedido, lo cual en un periodo de 1 a 3 días se
+          notificará al usuario a través de el número de celular proporcionado.
+          Si el pedido no puede ser aceptado, se procederá a un reembolso
+          completo.
         </p>
         <p>
           <b>7. Formas de pago</b> <br />
@@ -67,11 +67,16 @@ function TermsAndConditions() {
           sobre el producto hasta que se haya completado el pago.
         </p>
         <p>
-          <b>9. Resolución de disputas</b> <br />
-          En caso de cualquier disputa, los usuarios pueden comunicarse con
-          nosotros para resolverla de manera amistosa. Las reclamaciones pueden
-          presentarse a través de nuestro WhastApp: +54 261 498-8748 o de manera
-          presencial.
+          <b>8. Devolución de productos</b> <br />
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
+          consectetur doloribus, minus soluta maxime ipsa voluptatibus
+          necessitatibus quis iusto dolorem voluptatum porro, possimus
+        </p>
+        <p>
+          <b>9. Resolución de inconvenientes</b> <br />
+          En caso de cualquier incoveniente, All In Informática se encuentra
+          disponible para resolver los conflictos de manera amigable, tratando
+          de solucionar el problema eficazmente.
         </p>
       </div>
     </Section>

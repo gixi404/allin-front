@@ -1,14 +1,14 @@
 import { ArrowLeft as Icon } from "lucide-react";
 import { Link } from "wouter";
 import supabase from "../../database/supabase";
+import { ADMIN_PATH } from "../../utils/consts";
 
 function LoginAdmin() {
   function logIn() {
     return supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo:
-          "https://allinlujan.com.ar/030a941e-79c3-4fac-9f8e-72843da6d3df",
+        redirectTo: `https://allinlujan.com.ar${ADMIN_PATH}`,
       },
     });
   }

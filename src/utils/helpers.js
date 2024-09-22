@@ -66,6 +66,5 @@ export {
   len,
   msgWhatsApp,
   plainStr,
-  roundPrice
+  roundPrice,
 };
-
