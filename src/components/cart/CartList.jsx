@@ -17,9 +17,11 @@ function CartList({ cart, showMP, setShowMP }) {
         </p>
       )}
       <ul className="space-y-4 w-full">
-        {cart.map(p => (
-          <CartProduct key={p.id} showMP={showMP} {...p} />
-        ))}
+        {cart
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map(p => (
+            <CartProduct key={p.id} showMP={showMP} {...p} />
+          ))}
       </ul>
       {!showMP && (
         <div className="w-full justify-center items-center flex">

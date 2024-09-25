@@ -4,6 +4,7 @@ import useDolar from "../../hooks/useDolar";
 import { formatPrice, roundPrice } from "../../utils/helpers";
 import { useStore } from "../../utils/store";
 import DEFAULT_IMG from "/logo-img.png";
+import CartQuantity from "./CartQuantity";
 
 function CartProduct(props) {
   const { dolar } = useDolar(),
@@ -13,10 +14,10 @@ function CartProduct(props) {
     { removeProduct, myCart, setMyCart } = useStore();
 
   function handleQuantity(e) {
-    const quantity = Number(e.target.value);
-    if (quantity >= 1 && quantity <= 3) {
-      const newProduct = { ...props, quantity };
+    const quantity = parseInt(e.target.value);
+    if ([1, 2, 3].includes(quantity)) {
       const newCart = myCart.filter(product => product.id !== id);
+      const newProduct = { ...props, quantity };
       setMyCart([...newCart, newProduct]);
     }
   }
@@ -41,10 +42,11 @@ function CartProduct(props) {
         </div>
       ) : (
         <div className="flex justify-center items-center gap-x-3">
-          <label htmlFor="quantity" className="font-[500]">
+          <CartQuantity quantity={quantity} handleQuantity={handleQuantity} />
+          {/* <label htmlFor="quantity" className="font-[500] text-sm">
             Cantidad:
             <input
-              className="outline-0 rounded-md text-center ml-1 w-8 h-6"
+              className="outline-0 rounded-md text-center ml-1 w-10 h-6"
               type="number"
               id="quantity"
               defaultValue={1}
@@ -52,7 +54,7 @@ function CartProduct(props) {
               max={3}
               onChange={handleQuantity}
             />
-          </label>
+          </label> */}
           <Icon
             className="cursor-pointer hover:bg-red-50 duration-100 rounded-lg p-1 w-8 h-8 opacity-70"
             size={28}
