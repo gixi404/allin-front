@@ -15,8 +15,8 @@ const PURCHASES_ENABLED = true;
 const INITIAL_PROD = { name: "", description: "", price: 0, img: "" };
 
 const UIDS = [
-  // Recordá agregar los uids acá y en las reglas de supabase.
   "c9235c09-1bdd-468a-9122-45e96e5595e1",
+  "ab6492c9-3200-46e3-b57e-ae2e0ad9ced5",
 ];
 
 export {
