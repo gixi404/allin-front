@@ -73,10 +73,10 @@ function Cart() {
       const id = await getPreference();
       if (id) {
         setPreferenceId(id);
-        setShowMP(true);
       }
     } finally {
       setLoadingMP(false);
+      setShowMP(true);
     }
   }
 
