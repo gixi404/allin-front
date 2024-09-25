@@ -1,6 +1,5 @@
 import { Trash as Icon } from "lucide-react";
 import propTypes from "prop-types";
-import { useEffect } from "react";
 import useDolar from "../../hooks/useDolar";
 import { formatPrice, roundPrice } from "../../utils/helpers";
 import { useStore } from "../../utils/store";
@@ -23,8 +22,6 @@ function CartProduct(props) {
     }
   }
 
-  useEffect(() => console.log(showMP), [showMP]);
-
   return (
     <li className="flex items-center justify-between">
       <div className="flex items-center space-x-4">
@@ -41,7 +38,10 @@ function CartProduct(props) {
       </div>
       {showMP ? (
         <div className="flex justify-center items-center gap-x-3">
-          <p className="font-[500]">Cantidad: {quantity}</p>
+          <div className="font-[500] flex flex-col justify-center items-center border-2 border-slate-400 rounded-md p-1 text-sm">
+            <p>Cantidad:</p>
+            <span>{quantity}</span>
+          </div>
         </div>
       ) : (
         <div className="flex justify-center items-center gap-x-3">

@@ -26,7 +26,6 @@ function Cart() {
     [phone] = useLocalStorage("phone", ""),
     [isChecked, setIsChecked] = useState(false),
     [preferenceId, setPreferenceId] = useState(null),
-    [loadingMP, setLoadingMP] = useState(false),
     [msg, setMsg] = useState(""),
     cartWithPrices = myCart.map(p => ({
       ...p,
@@ -67,16 +66,10 @@ function Cart() {
 
   async function handleBuy() {
     if (!validateFields()) return;
-    setLoadingMP(true);
-
-    try {
-      const id = await getPreference();
-      if (id) {
-        setPreferenceId(id);
-      }
-    } finally {
-      setLoadingMP(false);
-      setShowMP(true);
+    setShowMP(true);
+    const id = await getPreference();
+    if (id) {
+      setPreferenceId(id);
     }
   }
 
@@ -130,7 +123,6 @@ function Cart() {
                 ) : (
                   <CartForm
                     validation={handleBuy}
-                    loadingMP={loadingMP}
                     isChecked={isChecked}
                     setIsChecked={setIsChecked}
                     msg={msg}

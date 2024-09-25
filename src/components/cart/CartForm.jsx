@@ -1,19 +1,11 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import propTypes from "prop-types";
 import { Link } from "wouter";
-import Loader from "../Loader";
 
 function CartForm(props) {
   const [name, setName] = useLocalStorage("name", ""),
     [phone, setPhone] = useLocalStorage("phone", ""),
-    { validation, loadingMP, isChecked, setIsChecked, msg, setMsg } = props;
-
-  if (loadingMP)
-    return (
-      <div className="w-full flex flex-col justify-center items-center h-[237.6px]">
-        <Loader />
-      </div>
-    );
+    { validation, isChecked, setIsChecked, msg, setMsg } = props;
 
   return (
     <form className="w-full flex flex-col justify-center items-center gap-y-4 sm:px-10">
