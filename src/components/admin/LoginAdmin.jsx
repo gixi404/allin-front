@@ -7,9 +7,7 @@ function LoginAdmin() {
   function logIn() {
     return supabase.auth.signInWithOAuth({
       provider: "google",
-      options: {
-        redirectTo: `https://allinlujan.com.ar${ADMIN_PATH}`,
-      },
+      options: { redirectTo: `https://allinlujan.com.ar${ADMIN_PATH}` },
     });
   }
 

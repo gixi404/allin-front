@@ -32,13 +32,14 @@ function Cart() {
       ...p,
       roundedPrice: roundPrice(p.price * dolar),
     })),
-    totalAmount = cartWithPrices.reduce((acc, p) => acc + p.roundedPrice, 0),
-    total = formatPrice(totalAmount),
+    total = formatPrice(
+      cartWithPrices.reduce((acc, p) => acc + p.roundedPrice * p.quantity, 0)
+    ),
     cartToMP = cartWithPrices.map(p => ({
       id: p.id,
       title: p.name,
       unit_price: p.roundedPrice,
-      quantity: 1,
+      quantity: p.quantity,
       currency_id: "ARS",
     }));
 

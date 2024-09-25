@@ -7,10 +7,19 @@ import DEFAULT_IMG from "/logo-img.png";
 
 function CartProduct(props) {
   const { dolar } = useDolar(),
-    { id, img, name, price, showMP } = props,
-    price_product = formatPrice(roundPrice(price * dolar)),
+    { id, img, name, price, showMP, quantity } = props,
+    price_product = formatPrice(roundPrice(price * dolar) * quantity),
     image = img == 200 || !img ? DEFAULT_IMG : img,
-    { removeProduct } = useStore();
+    { removeProduct, myCart, setMyCart } = useStore();
+
+  function handleQuantity(e) {
+    const quantity = Number(e.target.value);
+    if (quantity >= 1 && quantity <= 3) {
+      const newProduct = { ...props, quantity };
+      const newCart = myCart.filter(product => product.id !== id);
+      setMyCart([...newCart, newProduct]);
+    }
+  }
 
   return (
     <li className="flex items-center justify-between">
@@ -26,12 +35,30 @@ function CartProduct(props) {
           <p className="text-lg text-gray-900">${price_product}</p>
         </div>
       </div>
-      {!showMP && (
-        <Icon
-          className="cursor-pointer hover:bg-white duration-100 rounded-lg p-1 w-8 h-8 opacity-70"
-          size={28}
-          onClick={() => removeProduct(id)}
-        />
+      {showMP ? (
+        <div className="flex justify-center items-center gap-x-3">
+          <p className="font-[500]">Cantidad: {quantity}</p>
+        </div>
+      ) : (
+        <div className="flex justify-center items-center gap-x-3">
+          <label htmlFor="quantity" className="font-[500]">
+            Cantidad:
+            <input
+              className="outline-0 rounded-md text-center ml-1 w-8 h-6"
+              type="number"
+              id="quantity"
+              defaultValue={1}
+              min={1}
+              max={3}
+              onChange={handleQuantity}
+            />
+          </label>
+          <Icon
+            className="cursor-pointer hover:bg-red-50 duration-100 rounded-lg p-1 w-8 h-8 opacity-70"
+            size={28}
+            onClick={() => removeProduct(id)}
+          />
+        </div>
       )}
     </li>
   );
@@ -44,5 +71,6 @@ CartProduct.propTypes = {
   img: propTypes.string,
   name: propTypes.string,
   price: propTypes.number,
+  quantity: propTypes.number,
   showMP: propTypes.bool,
 };

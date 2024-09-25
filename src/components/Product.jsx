@@ -43,7 +43,7 @@ function Product(props) {
             </Link>
           ) : (
             <button
-              onClick={() => addProduct(props)}
+              onClick={() => addProduct({ ...props, quantity: 1 })}
               className="bg-orange-500 hover:bg-orange-400 duration-100 text-white text-lg border-2 border-orange-400 h-10 px-4 rounded-lg font-[500] w-full text-center"
               style={{ textShadow: "1px 1px 1px black" }}
             >

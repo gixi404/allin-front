@@ -34,7 +34,7 @@ function Products() {
         <div className="relative">
           <SearchIcon
             size={30}
-            color="white"
+            color="#fff"
             className="absolute top-2 left-2"
           />
           <input

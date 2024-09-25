@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Route, Switch } from "wouter";
 import Layout from "./components/Layout";
 import AboutUs from "./pages/AboutUs";
@@ -13,49 +12,21 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import { ADMIN_PATH } from "./utils/consts";
 
 function App() {
-  const [admin, setAdmin] = useState("");
-  const soyGixi = admin == "garnacho";
-
-  if (location.hostname == "localhost") {
-    return (
-      <Layout>
-        <Switch>
-          <Route path="/" component={Home} />
-          <Route path="/products" component={Products} />
-          <Route path="/location" component={Location} />
-          <Route path="/aboutus" component={AboutUs} />
-          <Route path="/success" component={Success} />
-          <Route path="/cart" component={Cart} />
-          <Route path="/termsandconditions" component={TermsAndConditions} />
-          <Route path={ADMIN_PATH} component={Admin} />
-          <Route path="*" component={NotFound} />
-        </Switch>
-      </Layout>
-    );
-  } else
-    return (
-      <Layout>
-        <input
-          type="text"
-          value={admin}
-          onChange={e => setAdmin(e.target.value)}
-        />
-        <Switch>
-          <Route path="/" component={soyGixi ? Home : NotFound} />
-          <Route path="/products" component={soyGixi ? Products : NotFound} />
-          <Route path="/location" component={soyGixi ? Location : NotFound} />
-          <Route path="/aboutus" component={soyGixi ? AboutUs : NotFound} />
-          <Route path="/success" component={soyGixi ? Success : NotFound} />
-          <Route path="/cart" component={soyGixi ? Cart : NotFound} />
-          <Route
-            path="/termsandconditions"
-            component={soyGixi ? TermsAndConditions : NotFound}
-          />
-          <Route path={ADMIN_PATH} component={soyGixi ? Admin : NotFound} />
-          <Route path="*" component={NotFound} />
-        </Switch>
-      </Layout>
-    );
+  return (
+    <Layout>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/products" component={Products} />
+        <Route path="/location" component={Location} />
+        <Route path="/aboutus" component={AboutUs} />
+        <Route path="/success" component={Success} />
+        <Route path="/cart" component={Cart} />
+        <Route path="/termsandconditions" component={TermsAndConditions} />
+        <Route path={ADMIN_PATH} component={Admin} />
+        <Route path="*" component={NotFound} />
+      </Switch>
+    </Layout>
+  );
 }
 
 export default App;

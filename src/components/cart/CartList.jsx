@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import CartProduct from "./CartProduct";
 import ProductsBtn from "../buttons/ProductsBtn";
 
-function CartItems({ cart, showMP, setShowMP }) {
+function CartList({ cart, showMP, setShowMP }) {
   return (
     <>
       <hr className="w-full border border-slate-400 rounded-lg" />
@@ -30,9 +30,9 @@ function CartItems({ cart, showMP, setShowMP }) {
   );
 }
 
-export default CartItems;
+export default CartList;
 
-CartItems.propTypes = {
+CartList.propTypes = {
   cart: propTypes.array,
   showMP: propTypes.bool,
   setShowMP: propTypes.func,
