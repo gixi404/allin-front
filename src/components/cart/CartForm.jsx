@@ -58,7 +58,7 @@ function CartForm(props) {
       <div className="w-full mt-4 flex flex-col justify-center items-center gap-y-1">
         <label
           htmlFor="check"
-          className="flex justify-start items-center w-full gap-x-2 text-[15px]"
+          className="flex justify-start items-center w-full gap-x-2 text-[13px] sm:text-[15px]"
         >
           <input
             type="checkbox"

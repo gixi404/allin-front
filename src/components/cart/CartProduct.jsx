@@ -24,7 +24,7 @@ function CartProduct(props) {
   }
 
   return (
-    <li className="flex items-center justify-between">
+    <li className="flex sm:flex-row flex-col items-start sm:items-center justify-between border-b  border-slate-400 pb-2">
       <div className="flex items-center space-x-4">
         <img
           alt="Imagen de producto"
@@ -38,7 +38,7 @@ function CartProduct(props) {
         </div>
       </div>
 
-      <div className="flex justify-center items-center gap-x-3">
+      <div className="flex justify-end items-end sm:items-center gap-x-3 w-full sm:w-max">
         <CartQuantity
           showMP={showMP}
           quantity={quantity}
