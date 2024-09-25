@@ -66,9 +66,9 @@ function Cart() {
 
   async function handleBuy() {
     if (!validateFields()) return;
-    setShowMP(true);
     const id = await getPreference();
     if (id) {
+      setShowMP(true);
       setPreferenceId(id);
     }
   }
