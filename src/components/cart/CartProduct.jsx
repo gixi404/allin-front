@@ -16,9 +16,10 @@ function CartProduct(props) {
   function handleQuantity(e) {
     const quantity = parseInt(e.target.value);
     if ([1, 2, 3].includes(quantity)) {
-      const newCart = myCart.filter(product => product.id !== id);
-      const newProduct = { ...props, quantity };
-      setMyCart([...newCart, newProduct]);
+      const updatedCart = myCart.map(product =>
+        product.id === id ? { ...product, quantity } : product
+      );
+      setMyCart(updatedCart);
     }
   }
 
@@ -36,23 +37,21 @@ function CartProduct(props) {
           <p className="text-lg text-gray-900">${price_product}</p>
         </div>
       </div>
-      {showMP ? (
-        <div className="flex justify-center items-center gap-x-3">
-          <div className="font-[500] flex flex-col justify-center items-center border-2 border-slate-400 rounded-md p-1 text-sm">
-            <p>Cantidad:</p>
-            <span>{quantity}</span>
-          </div>
-        </div>
-      ) : (
-        <div className="flex justify-center items-center gap-x-3">
-          <CartQuantity quantity={quantity} handleQuantity={handleQuantity} />
+
+      <div className="flex justify-center items-center gap-x-3">
+        <CartQuantity
+          showMP={showMP}
+          quantity={quantity}
+          handleQuantity={handleQuantity}
+        />
+        {!showMP && (
           <Icon
             className="cursor-pointer hover:bg-red-50 duration-100 rounded-lg p-1 w-8 h-8 opacity-70"
             size={28}
             onClick={() => removeProduct(id)}
           />
-        </div>
-      )}
+        )}
+      </div>
     </li>
   );
 }

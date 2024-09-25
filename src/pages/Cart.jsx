@@ -27,6 +27,7 @@ function Cart() {
     [isChecked, setIsChecked] = useState(false),
     [preferenceId, setPreferenceId] = useState(null),
     [msg, setMsg] = useState(""),
+    [loadingMP, setLoadingMP] = useState(false),
     cartWithPrices = myCart.map(p => ({
       ...p,
       roundedPrice: roundPrice(p.price * dolar),
@@ -66,10 +67,15 @@ function Cart() {
 
   async function handleBuy() {
     if (!validateFields()) return;
-    const id = await getPreference();
-    if (id) {
-      setShowMP(true);
-      setPreferenceId(id);
+    setLoadingMP(true);
+    try {
+      const id = await getPreference();
+      if (id) {
+        setShowMP(true);
+        setPreferenceId(id);
+      }
+    } finally {
+      setLoadingMP(false);
     }
   }
 
@@ -124,9 +130,11 @@ function Cart() {
                   <CartForm
                     validation={handleBuy}
                     isChecked={isChecked}
+                    loadingMP={loadingMP}
                     setIsChecked={setIsChecked}
                     msg={msg}
                     setMsg={setMsg}
+                    showMP={showMP}
                   />
                 )}
                 <CartList cart={myCart} showMP={showMP} setShowMP={setShowMP} />

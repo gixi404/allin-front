@@ -1,11 +1,13 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import propTypes from "prop-types";
+import { twMerge } from "tailwind-merge";
 import { Link } from "wouter";
 
 function CartForm(props) {
   const [name, setName] = useLocalStorage("name", ""),
     [phone, setPhone] = useLocalStorage("phone", ""),
-    { validation, isChecked, setIsChecked, msg, setMsg } = props;
+    { validation, isChecked, setIsChecked, msg, setMsg, loadingMP, showMP } =
+      props;
 
   return (
     <form className="w-full flex flex-col justify-center items-center gap-y-4 sm:px-10">
@@ -18,6 +20,7 @@ function CartForm(props) {
           value={name}
           onChange={e => setName(e.target.value)}
           required
+          disabled={showMP}
           autoFocus
           maxLength={25}
           id="name"
@@ -32,6 +35,7 @@ function CartForm(props) {
           value={phone}
           onChange={e => setPhone(e.target.value)}
           required
+          disabled={showMP}
           id="num"
           type="number"
           placeholder="261321567"
@@ -44,6 +48,7 @@ function CartForm(props) {
           value={msg}
           onChange={e => setMsg(e.target.value)}
           required
+          disabled={showMP}
           id="msg"
           placeholder="Escribe tu mensaje..."
           className="w-full mt-1 rounded resize-none tracking-wide px-4 py-1.5 bg-slate-100 border-2 border-slate-500 placeholder:text-slate-500 placeholder:text-[16px] outline-0"
@@ -59,6 +64,7 @@ function CartForm(props) {
             type="checkbox"
             id="check"
             checked={isChecked}
+            disabled={showMP}
             onChange={e => setIsChecked(e.target.checked)}
             className="scale-125 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           />
@@ -73,9 +79,14 @@ function CartForm(props) {
         <button
           type="button"
           onClick={validation}
-          className="mt-2 w-full px-4 py-2 border-2 border-slate-500 text-lg rounded-lg bg-slate-700 duration-100 hover:bg-slate-600 text-white"
+          className={twMerge(
+            loadingMP
+              ? "bg-green-400 hover:bg-green-400 text-black cursor-default"
+              : "bg-slate-700 hover:bg-slate-600 text-white",
+            "mt-2 w-full px-4 py-2 border-2 border-slate-500 text-lg rounded-lg bg-slate-700 duration-100"
+          )}
         >
-          Siguiente
+          {loadingMP ? "Cargando..." : "Siguiente"}
         </button>
       </div>
     </form>
@@ -91,4 +102,5 @@ CartForm.propTypes = {
   setIsChecked: propTypes.func.isRequired,
   msg: propTypes.string,
   setMsg: propTypes.func,
+  showMP: propTypes.bool,
 };

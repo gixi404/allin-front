@@ -1,6 +1,6 @@
 import propTypes from "prop-types";
 
-function CartQuantity({ quantity, handleQuantity }) {
+function CartQuantity({ quantity, handleQuantity, showMP }) {
   return (
     <label
       htmlFor="quantity"
@@ -13,6 +13,7 @@ function CartQuantity({ quantity, handleQuantity }) {
         id="quantity"
         value={quantity}
         min={1}
+        disabled={showMP}
         max={3}
         onChange={handleQuantity}
       />
@@ -25,4 +26,5 @@ export default CartQuantity;
 CartQuantity.propTypes = {
   quantity: propTypes.number.isRequired,
   handleQuantity: propTypes.func.isRequired,
+  showMP: propTypes.bool,
 };
