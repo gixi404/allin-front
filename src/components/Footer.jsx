@@ -1,3 +1,4 @@
+import { WHATSAPP_NUM } from "../utils/consts";
 import InstagramBtn from "./buttons/InstagramBtn";
 
 function Footer() {
@@ -6,12 +7,12 @@ function Footer() {
       <div className="flex justify-center items-start flex-col gap-y-2">
         <span className="text-xl">Encontranos</span>
         <p>San Martín 537, Luján de Cuyo, Mendoza.</p>
-        <p>+54 261 498-8748</p>
+        <p>{WHATSAPP_NUM}</p>
       </div>
       <div className="flex justify-center items-start flex-col gap-y-2 text-sm">
         <span className="text-xl">Horarios</span>
         <p>
-          Lunes a Viernes
+          Lunes a viernes
           <br />
           9:30 a 13:30
           <br />

@@ -27,10 +27,7 @@ function Main() {
         <div className="w-full flex flex-col lg:flex-row justify-start items-center gap-4">
           <ProductsBtn text="productos" />
           <a
-            href={msgWhatsApp(
-              "allin",
-              "Hola, necesito servicio técnico para..."
-            )}
+            href={msgWhatsApp("Hola, necesito servicio técnico para...")}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-xl border-2 border-orange-500/50 px-4 py-2.5 flex justify-center items-center gap-x-3 font-[500] hover:bg-orange-400/90 bg-orange-400 duration-150 hover:scale-95 text-black text-lg capitalize w-full max-w-[320px] lg:w-max"

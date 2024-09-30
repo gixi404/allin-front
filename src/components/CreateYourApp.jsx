@@ -7,17 +7,16 @@ function CreateYourApp() {
     <section className="w-full px-6 lg:px-0 flex flex-col lg:flex-row  text-black justify-between items-start rounded-lg gap-6 mt-20">
       <div className="w-full lg:w-3/6 h-[310px] flex flex-col justify-between items-center">
         <h2 className="w-full text-4xl lg:text-5xl tracking-tight text-balance font-[700] text-center lg:text-end -mb-6">
-          Creamos tu sitio web o aplicación
+          Creamos tu sitio web
         </h2>
         <p className="text-[19px] font-[500] text-pretty w-full text-center lg:text-end">
-          Creamos sitios web y aplicaciones a medida, diseñados específicamente
-          para responder a tus necesidades particulares.
+          Creamos sitios web a medida, diseñados específicamente para responder
+          a tus necesidades particulares.
         </p>
         <div className="w-full flex justify-center lg:justify-end items-center gap-x-4">
           <a
             href={msgWhatsApp(
-              "gio",
-              "Hola, quiero consultar para crear un sitio web o aplicación..."
+              "Hola, quiero consultar para crear un sitio web..."
             )}
             target="_blank"
             rel="noopener noreferrer"

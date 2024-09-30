@@ -4,7 +4,7 @@ function WhatsAppBtn() {
   return (
     <a
       className="w-12 h-12 cursor-pointer fixed bottom-8 right-8 z-50 duration-150 hover:scale-105"
-      href={msgWhatsApp("allin", "Hola, quiero consultarles por...")}
+      href={msgWhatsApp("Hola, quiero consultarles por...")}
       target="_blank"
       rel="noopener noreferrer"
     >

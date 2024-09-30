@@ -1,4 +1,4 @@
-import { DOLAR_PRICE_URL, DOLAR_STATUS_URL } from "./consts";
+import { DOLAR_PRICE_URL, DOLAR_STATUS_URL, WHATSAPP_NUM } from "./consts";
 
 const normalizeStr = str =>
   str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -20,23 +20,10 @@ function formatPrice(price) {
   }).format(price);
 }
 
-function msgWhatsApp(to, msg) {
-  const url = num =>
-    `https://api.whatsapp.com/send?phone=+${num}&text=${encodeURI(msg)}`;
-
-  switch (to) {
-    case "allin":
-      return url("542614988748");
-
-    case "gio":
-      return url("542612520993");
-
-    case "jorge":
-      return url("542612759344");
-
-    default:
-      return url("542614988748");
-  }
+function msgWhatsApp(message) {
+  const msg = encodeURI(message);
+  const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUM}&text=${msg}`;
+  return url;
 }
 
 async function getDolarPrice() {

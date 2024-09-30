@@ -38,7 +38,7 @@ function CartForm(props) {
           disabled={showMP}
           id="num"
           type="number"
-          placeholder="261321567"
+          placeholder="2613215671"
           className="w-full mt-1 rounded tracking-wide px-4 py-1.5 bg-slate-100 border-2 border-slate-500  placeholder:text-slate-500 outline-0"
         />
       </label>

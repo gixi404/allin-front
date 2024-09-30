@@ -26,7 +26,6 @@ function SecurityCameras() {
         <div className="w-full flex justify-center lg:justify-start items-center gap-x-4">
           <a
             href={msgWhatsApp(
-              "allin",
               "Hola, quiero consultar sobre el servicio de cámaras de seguridad…"
             )}
             target="_blank"
