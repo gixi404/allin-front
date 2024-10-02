@@ -12,13 +12,14 @@ const CHECKOUT_URL =
 
 const PURCHASES_ENABLED = true;
 
-const INITIAL_PROD = { name: "", description: "", price: 0, img: "" };
+const INITIAL_PROD = {name: "", description: "", price: 0, img: ""};
 
 const WHATSAPP_NUM = "+54 261 256 6759";
 
 const UIDS = [
   "c9235c09-1bdd-468a-9122-45e96e5595e1",
   "ab6492c9-3200-46e3-b57e-ae2e0ad9ced5",
+  "38cec698-a37c-47a2-8738-b2a942859e08",
 ];
 
 export {
