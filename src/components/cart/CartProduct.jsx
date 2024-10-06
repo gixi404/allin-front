@@ -13,14 +13,22 @@ function CartProduct(props) {
     image = img == 200 || !img ? DEFAULT_IMG : img,
     { removeProduct, myCart, setMyCart } = useStore();
 
-  function handleQuantity(e) {
-    const quantity = parseInt(e.target.value);
-    if ([1, 2, 3].includes(quantity)) {
-      const updatedCart = myCart.map(product =>
-        product.id === id ? { ...product, quantity } : product
-      );
-      setMyCart(updatedCart);
-    }
+  function increment() {
+    const updatedCart = myCart.map(product =>
+      product.id === id && product.quantity < 3
+        ? { ...product, quantity: product.quantity + 1 }
+        : product
+    );
+    setMyCart(updatedCart);
+  }
+
+  function decrement() {
+    const updatedCart = myCart.map(product =>
+      product.id === id && product.quantity > 1
+        ? { ...product, quantity: product.quantity - 1 }
+        : product
+    );
+    setMyCart(updatedCart);
   }
 
   return (
@@ -42,7 +50,8 @@ function CartProduct(props) {
         <CartQuantity
           showMP={showMP}
           quantity={quantity}
-          handleQuantity={handleQuantity}
+          increment={increment}
+          decrement={decrement}
         />
         {!showMP && (
           <Icon

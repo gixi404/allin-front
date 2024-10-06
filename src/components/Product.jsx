@@ -37,16 +37,14 @@ function Product(props) {
             <Link
               to="/cart"
               onClick={() => scrollTo({ top: 0, behavior: "instant" })}
-              className="duration-100 text-black text-lg border-2 border-orange-200 hover:bg-orange-100 bg-orange-50 pt-1 cursor-default h-10 px-4 rounded-lg font-[500] w-full text-center"
-            >
+              className="duration-100 text-black text-lg border-2 border-orange-200 hover:bg-orange-100 bg-orange-50 pt-1 cursor-default h-10 px-4 rounded-lg font-[500] w-full text-center">
               En el carrito
             </Link>
           ) : (
             <button
               onClick={() => addProduct({ ...props, quantity: 1 })}
               className="bg-orange-500 hover:bg-orange-400 duration-100 text-white text-lg border-2 border-orange-400 h-10 px-4 rounded-lg font-[500] w-full text-center"
-              style={{ textShadow: "1px 1px 1px black" }}
-            >
+              style={{ textShadow: "1px 1px 1px black" }}>
               Añadir al carrito
             </button>
           ))}

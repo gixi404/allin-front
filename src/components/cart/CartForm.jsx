@@ -1,20 +1,19 @@
-import { useLocalStorage } from "@uidotdev/usehooks";
+import {useLocalStorage} from "@uidotdev/usehooks";
 import propTypes from "prop-types";
-import { twMerge } from "tailwind-merge";
-import { Link } from "wouter";
+import {twMerge} from "tailwind-merge";
+import {Link} from "wouter";
 
 function CartForm(props) {
   const [name, setName] = useLocalStorage("name", ""),
     [phone, setPhone] = useLocalStorage("phone", ""),
-    { validation, isChecked, setIsChecked, msg, setMsg, loadingMP, showMP } =
+    {validation, isChecked, setIsChecked, msg, setMsg, loadingMP, showMP} =
       props;
 
   return (
     <form className="w-full flex flex-col justify-center items-center gap-y-4 sm:px-10">
       <label
         htmlFor="name"
-        className="text-lg w-full font-[500] text-slate-900"
-      >
+        className="text-lg w-full font-[500] text-slate-900">
         Nombre y apellido
         <input
           value={name}
@@ -58,8 +57,7 @@ function CartForm(props) {
       <div className="w-full mt-4 flex flex-col justify-center items-center gap-y-1">
         <label
           htmlFor="check"
-          className="flex justify-start items-center w-full gap-x-2 text-[13px] sm:text-[15px]"
-        >
+          className="flex justify-start items-center w-full gap-x-2 text-[13px] sm:text-[15px]">
           <input
             type="checkbox"
             id="check"
@@ -83,9 +81,8 @@ function CartForm(props) {
             loadingMP
               ? "bg-green-400 hover:bg-green-400 text-black cursor-default"
               : "bg-slate-700 hover:bg-slate-600 text-white",
-            "mt-2 w-full px-4 py-2 border-2 border-slate-500 text-lg rounded-lg bg-slate-700 duration-100"
-          )}
-        >
+            "mt-2 w-full px-4 py-2 border-2 border-slate-500 text-lg rounded-lg duration-100"
+          )}>
           {loadingMP ? "Cargando..." : "Siguiente"}
         </button>
       </div>

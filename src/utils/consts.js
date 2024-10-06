@@ -12,7 +12,7 @@ const CHECKOUT_URL =
 
 const PURCHASES_ENABLED = true;
 
-const INITIAL_PROD = {name: "", description: "", price: 0, img: ""};
+const INITIAL_PROD = { name: "", description: "", price: 0, img: "" };
 
 const WHATSAPP_NUM = "+54 261 256 6759";
 
