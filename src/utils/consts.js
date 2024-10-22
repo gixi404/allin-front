@@ -14,7 +14,7 @@ const PURCHASES_ENABLED = true;
 
 const INITIAL_PROD = { name: "", description: "", price: 0, img: "" };
 
-const WHATSAPP_NUM = "+54 261 256 6759";
+const WHATSAPP_NUM = "+54 261 498 8748";
 
 const UIDS = [
   "c9235c09-1bdd-468a-9122-45e96e5595e1",

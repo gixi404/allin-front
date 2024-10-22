@@ -25,8 +25,8 @@ function Product(props) {
         className="w-full h-[50%] object-cover object-center aspect-[500/400]"
       />
       <div className="px-4 h-[80px] w-full flex flex-col justify-start items-start space-y-2">
-        <p className="text-xl font-bold">{name}</p>
-        <p className=" text-[16px]">{checkDescrip(description)}</p>
+        <p className="text-xl font-bold uppercase">{name}</p>
+        <p className="text-[16px]">{checkDescrip(description)}</p>
       </div>
       <div className="flex flex-col items-start justify-between w-full pb-4 px-4 gap-y-2 h-[92px]">
         <span className="text-lg font-semibold">
