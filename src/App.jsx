@@ -2,7 +2,6 @@ import { Route, Switch } from "wouter";
 import Layout from "./components/Layout";
 import AboutUs from "./pages/AboutUs";
 import Admin from "./pages/Admin";
-import Cart from "./pages/Cart";
 import Home from "./pages/Home";
 import Location from "./pages/Location";
 import NotFound from "./pages/NotFound";
@@ -20,7 +19,7 @@ function App() {
         <Route path="/location" component={Location} />
         <Route path="/aboutus" component={AboutUs} />
         <Route path="/success" component={Success} />
-        <Route path="/cart" component={Cart} />
+        {/* <Route path="/cart" component={Cart} /> */}
         <Route path="/termsandconditions" component={TermsAndConditions} />
         <Route path={ADMIN_PATH} component={Admin} />
         <Route path="*" component={NotFound} />

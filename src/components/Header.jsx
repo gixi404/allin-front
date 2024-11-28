@@ -14,8 +14,7 @@ function Header() {
       <Link
         onClick={top}
         to="/"
-        className="flex justify-center items-center gap-x-5"
-      >
+        className="flex justify-center items-center gap-x-5">
         <img src={logo} width={45} height={45} alt="logo" />
         <h1 className="text-lg lg:text-[26px] font-[500]">
           All <span className="text-orange-600">In</span>
@@ -26,27 +25,24 @@ function Header() {
         <Link
           onClick={top}
           className="hover:underline duration-75"
-          to="/products"
-        >
+          to="/products">
           Productos
         </Link>
         <Link
           onClick={top}
           className="hover:underline duration-75"
-          to="/location"
-        >
+          to="/location">
           Ubicación
         </Link>
         <Link
           onClick={top}
           className="hover:underline duration-75"
-          to="/aboutus"
-        >
+          to="/aboutus">
           Sobre Nosotros
         </Link>
-        <Link to="/cart" className="cursor-pointer duration-150 hover:scale-95">
+        {/* <Link to="/cart" className="cursor-pointer duration-150 hover:scale-95">
           <CartBtn isHeader />
-        </Link>
+        </Link> */}
       </nav>
       <MenuBtn setMenuIsOpen={setMenuIsOpen} />
       {menuIsOpen && <Menu setMenuIsOpen={setMenuIsOpen} top={top} />}

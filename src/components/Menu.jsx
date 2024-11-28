@@ -14,8 +14,7 @@ function Menu({ setMenuIsOpen, top }) {
           top();
           setMenuIsOpen(false);
         }}
-        to="/"
-      >
+        to="/">
         &gt; Inicio
       </Link>
       <Link
@@ -23,11 +22,10 @@ function Menu({ setMenuIsOpen, top }) {
           top();
           setMenuIsOpen(false);
         }}
-        to="/products"
-      >
+        to="/products">
         &gt; Productos
       </Link>
-      <Link
+      {/* <Link
         onClick={() => {
           top();
           setMenuIsOpen(false);
@@ -35,14 +33,13 @@ function Menu({ setMenuIsOpen, top }) {
         to="/cart"
       >
         &gt; Carrito
-      </Link>
+      </Link> */}
       <Link
         onClick={() => {
           top();
           setMenuIsOpen(false);
         }}
-        to="/location"
-      >
+        to="/location">
         &gt; Ubicación
       </Link>
       <Link
@@ -50,8 +47,7 @@ function Menu({ setMenuIsOpen, top }) {
           top();
           setMenuIsOpen(false);
         }}
-        to="/aboutus"
-      >
+        to="/aboutus">
         &gt; Sobre nosotros
       </Link>
     </ul>
