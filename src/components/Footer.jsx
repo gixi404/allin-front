@@ -1,5 +1,7 @@
 import { WHATSAPP_NUM } from "../utils/consts";
 import InstagramBtn from "./buttons/InstagramBtn";
+import FacebookBtn from "./buttons/FacebookBtn";
+
 
 function Footer() {
   return (
@@ -32,6 +34,7 @@ function Footer() {
       <div className="flex justify-center items-center flex-col gap-y-2">
         <span className="text-xl">¡Seguinos!</span>
         <InstagramBtn />
+        <FacebookBtn />
       </div>
     </footer>
   );
