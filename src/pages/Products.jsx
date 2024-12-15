@@ -11,11 +11,11 @@ function Products() {
   const [products, setProducts] = useState([]),
     [isLoading, setIsLoading] = useState(true),
     [val, setVal] = useState(""),
-    onlyVisibles = products.filter(p => p.visible),
+    justVisibles = products.filter((p) => p.visible),
     filteredProducts =
       val != ""
-        ? onlyVisibles.filter(p => plainStr(p.name).includes(plainStr(val)))
-        : onlyVisibles;
+        ? justVisibles.filter((p) => plainStr(p.name).includes(plainStr(val)))
+        : justVisibles;
 
   useEffect(() => {
     (async function () {
@@ -33,7 +33,7 @@ function Products() {
         </p>
         <div className="relative w-[280px] sm:w-[400px] mx-auto ">
           <input
-            onChange={e => setVal(e.target.value)}
+            onChange={(e) => setVal(e.target.value)}
             autoFocus
             type="search"
             placeholder="Busca productos..."
@@ -41,7 +41,8 @@ function Products() {
           />
           <button
             type="button"
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+          >
             <SearchIcon color="rgb(107 114 128)" className="h-5 w-5" />
             <span className="sr-only">Buscar</span>
           </button>
@@ -52,7 +53,7 @@ function Products() {
       ) : (
         <ul className="flex justify-around w-full items-center gap-10 flex-wrap flex-col lg:flex-row">
           {len(filteredProducts) > 0 ? (
-            filteredProducts.map(p => <Product key={p.id} {...p} />)
+            filteredProducts.map((p) => <Product key={p.id} {...p} />)
           ) : (
             <NoMatches />
           )}

@@ -4,7 +4,7 @@ import img from "/sitioweb-img.png";
 
 function CreateYourApp() {
   return (
-    <section className="w-full px-6 lg:px-0 flex flex-col lg:flex-row  text-black justify-between items-start rounded-lg gap-6 mt-20">
+    <section className="w-full px-6 lg:px-0 flex flex-col lg:flex-row text-black justify-between items-start rounded-lg gap-6 mt-20">
       <div className="w-full lg:w-3/6 h-[310px] flex flex-col justify-between items-center">
         <h2 className="w-full text-4xl lg:text-5xl tracking-tight text-balance font-[700] text-center lg:text-end -mb-6">
           Creamos tu sitio web
