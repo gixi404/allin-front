@@ -1,7 +1,7 @@
 import { CpuIcon } from "lucide-react";
 import { msgWhatsApp } from "../utils/helpers";
 import ProductsBtn from "./buttons/ProductsBtn";
-import mainImg from "/main-img.png";
+import mainImg from "/main-img.webp";
 
 function Main() {
   return (
@@ -30,7 +30,8 @@ function Main() {
             href={msgWhatsApp("Hola, necesito servicio técnico para...")}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-xl border-2 border-orange-500/50 px-4 py-2.5 flex justify-center items-center gap-x-3 font-[500] hover:bg-orange-400/90 bg-orange-400 duration-150 hover:scale-95 text-black text-lg capitalize w-full max-w-[320px] lg:w-max">
+            className="rounded-xl border-2 border-orange-500/50 px-4 py-2.5 flex justify-center items-center gap-x-3 font-[500] hover:bg-orange-400/90 bg-orange-400 duration-150 hover:scale-95 text-black text-lg capitalize w-full max-w-[320px] lg:w-max"
+          >
             <CpuIcon className="size-8" strokeWidth={1.5} />
             servicio técnico
           </a>
